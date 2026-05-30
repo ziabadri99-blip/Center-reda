@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سنتر رضا ابو لحمة — كربلاء المقدسة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#b8860b; --gold-light:#d4a017; --gold-pale:#fdf8ee;
+  --dark:#1a1a1a; --white:#ffffff; --off-white:#fafaf8;
+  --gray:#f2f2ef; --border:#e8e4dc; --text:#1c1c1c; --muted:#888;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cairo',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;width:100%;z-index:500;background:#ffffff;backdrop-filter:blur(20px);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(0,0,0,0.06);}
+.nav-logo{font-family:'Tajawal',sans-serif;font-size:1.25rem;font-weight:900;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.nav-logo .logo-icon{width:36px;height:36px;background:var(--gold-pale);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.nav-logo .logo-icon svg{width:20px;height:20px;fill:var(--gold);}
+.nav-logo span{color:var(--muted);font-weight:400;font-size:0.82rem;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:600;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.basket-btn{position:relative;cursor:pointer;background:var(--gold);border:none;height:50px;padding:0 24px;border-radius:10px;display:flex;align-items:center;gap:9px;color:var(--dark);font-size:1rem;font-weight:900;font-family:'Cairo',sans-serif;transition:all 0.2s;box-shadow:0 3px 12px rgba(184,134,11,0.3);}
+.basket-btn:hover{background:var(--gold-light);}
+.basket-btn svg{width:18px;height:18px;fill:var(--dark);}
+.b-count{background:var(--gold-light);color:var(--text);border-radius:50%;width:18px;height:18px;font-size:0.65rem;font-weight:900;display:none;align-items:center;justify-content:center;}
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;}
+.slides-track{position:absolute;inset:0;display:flex;transition:transform 0.9s cubic-bezier(0.77,0,0.18,1);}
+.slide{min-width:100%;height:100%;position:relative;overflow:hidden;}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 7s ease;background-color:#222;}
+.slide:hover .slide-bg{transform:scale(1.04);}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to left,rgba(0,0,0,0.1) 0%,rgba(0,0,0,0.45) 50%,rgba(0,0,0,0.68) 100%);}
+.slide-content{position:absolute;inset:0;display:flex;align-items:center;padding:0 7% 90px;}
+.slide-inner{max-width:580px;color:var(--text);}
+.slide-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(212,160,23,0.6);padding:5px 14px;border-radius:4px;color:var(--gold-light);background:rgba(0,0,0,0.3);backdrop-filter:blur(4px);font-size:0.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;}
+.slide-inner h1{font-family:'Tajawal',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1.15;color:#fff;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,0.4);}
+.slide-inner h1 em{font-style:normal;color:var(--gold-light);}
+.slide-inner p{font-size:1rem;color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:30px;max-width:460px;}
+.price-tag{display:inline-flex;align-items:center;gap:10px;background:rgba(0,0,0,0.3);border:1px solid rgba(212,160,23,0.4);padding:8px 18px;border-radius:4px;margin-bottom:28px;backdrop-filter:blur(8px);}
+.p-old{color:rgba(255,255,255,0.45);text-decoration:line-through;font-size:0.95rem;}
+.p-new{color:var(--gold-light);font-family:'Tajawal',sans-serif;font-size:1.5rem;font-weight:900;}
+.p-save{background:var(--gold-light);color:var(--text);padding:3px 9px;border-radius:2px;font-size:0.72rem;font-weight:800;letter-spacing:.5px;}
+.slide-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:var(--gold-light);color:var(--text);padding:13px 28px;border-radius:4px;font-size:0.9rem;font-weight:800;text-decoration:none;border:none;cursor:pointer;font-family:'Cairo',sans-serif;transition:all 0.25s;letter-spacing:.3px;}
+.btn-primary:hover{background:#e8b420;transform:translateY(-2px);box-shadow:0 6px 20px rgba(184,134,11,0.35);}
+.btn-outline{background:rgba(255,255,255,0.15);color:#fff;backdrop-filter:blur(6px);padding:13px 26px;border-radius:4px;font-size:0.9rem;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,0.5);transition:all 0.25s;display:inline-flex;align-items:center;gap:7px;}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,0.22);}
+.sl-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:20;background:rgba(255,255,255,0.18);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.sl-arr:hover{background:rgba(255,255,255,0.32);}
+.sl-arr svg{width:18px;height:18px;fill:#fff;}
+.arr-r{right:24px;} .arr-l{left:24px;}
+.sl-dots{position:absolute;bottom:90px;left:50%;transform:translateX(-50%);z-index:20;display:flex;gap:8px;}
+.sl-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer;border:none;transition:all 0.3s;}
+.sl-dot.active{background:var(--gold);width:26px;border-radius:4px;}
+.trust-bar{position:absolute;bottom:0;left:0;right:0;z-index:20;background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;justify-content:center;}
+.trust-item{display:flex;align-items:center;gap:10px;padding:14px 30px;border-left:1px solid var(--border);color:var(--text);}
+.trust-item:last-child{border:none;}
+.trust-item svg{width:16px;height:16px;fill:var(--gold);flex-shrink:0;}
+.trust-item span{font-size:0.78rem;font-weight:600;color:var(--dark);}
+.urgency{background:var(--white);padding:10px 5%;display:flex;align-items:center;justify-content:center;gap:14px;}
+.urgency p{color:var(--text);font-size:0.84rem;}
+.urgency strong{color:var(--gold-light);}
+.cd{display:flex;gap:5px;align-items:center;}
+.cdu{background:rgba(184,134,11,0.08);color:var(--gold-light);padding:2px 8px;border-radius:3px;font-weight:900;font-size:0.84rem;font-family:'Tajawal',sans-serif;min-width:28px;text-align:center;}
+.ticker-wrap{background:#1a1a1a;overflow:hidden;padding:9px 0;}
+.ticker{display:flex;white-space:nowrap;animation:tick 38s linear infinite;}
+.ticker s{font-style:normal;font-family:'Cairo',sans-serif;font-weight:600;font-size:0.82rem;color:#ccc;padding:0 28px;letter-spacing:.3px;}
+.ticker s::before{content:'— ';color:var(--gold-light);}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.stats-bar{background:#1a1a1a;padding:22px 5%;}
+.stats-inner{display:flex;justify-content:space-around;flex-wrap:wrap;gap:16px;max-width:900px;margin:0 auto;}
+.stat-item{text-align:center;}
+.stat-n{font-family:'Tajawal',sans-serif;font-size:1.9rem;font-weight:900;color:var(--gold-light);}
+.stat-l{color:rgba(255,255,255,0.45);font-size:0.75rem;margin-top:2px;letter-spacing:.3px;}
+section{padding:72px 5%;}
+.sec-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
+.sec-title{font-family:'Tajawal',sans-serif;font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:900;line-height:1.22;color:var(--text);margin-bottom:12px;}
+.sec-sub{color:var(--muted);font-size:0.95rem;line-height:1.82;max-width:540px;margin-bottom:40px;}
+.categories{background:#fafaf8;}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;}
+.cat-card{background:var(--white);border-radius:8px;padding:18px 8px;text-align:center;cursor:pointer;border:1.5px solid var(--border);transition:all 0.28s;}
+.cat-card:hover,.cat-card.active{border-color:var(--gold);box-shadow:0 8px 24px rgba(184,134,11,0.12);transform:translateY(-3px);}
+.cat-card.active{background:var(--gold-pale);}
+.cat-emoji{font-size:1.8rem;margin-bottom:8px;line-height:1;}
+.cat-name{font-weight:700;font-size:0.78rem;color:var(--text);line-height:1.3;}
+#shop{transition:background 0.5s;}
+.shop-theme-default{background:var(--white);}
+.shop-theme-meat{background:linear-gradient(180deg,#fdf6f0 0%,#fff 60%);}
+.shop-theme-veg{background:linear-gradient(180deg,#f0f8f1 0%,#fff 60%);}
+.shop-theme-dairy{background:linear-gradient(180deg,#f5f8ff 0%,#fff 60%);}
+.shop-theme-bread{background:linear-gradient(180deg,#fdf9f0 0%,#fff 60%);}
+.shop-theme-cleaning{background:linear-gradient(180deg,#f0f5ff 0%,#fff 60%);}
+.shop-theme-drinks{background:linear-gradient(180deg,#f0fbf8 0%,#fff 60%);}
+.shop-theme-sweets{background:linear-gradient(180deg,#fdf0f5 0%,#fff 60%);}
+.shop-theme-grains{background:linear-gradient(180deg,#faf5ec 0%,#fff 60%);}
+.shop-theme-canned{background:linear-gradient(180deg,#f5f0ea 0%,#fff 60%);}
+.shop-theme-frozen{background:linear-gradient(180deg,#f0f5ff 0%,#fff 60%);}
+.shop-theme-spices{background:linear-gradient(180deg,#fdf5f0 0%,#fff 60%);}
+.shop-theme-baby{background:linear-gradient(180deg,#fff0f8 0%,#fff 60%);}
+.shop-theme-beauty{background:linear-gradient(180deg,#fdf0fb 0%,#fff 60%);}
+.shop-theme-tobacco{background:linear-gradient(180deg,#f5f5f0 0%,#fff 60%);}
+.cat-banner{border-radius:12px;overflow:hidden;position:relative;height:160px;margin-bottom:32px;background-size:cover;background-position:center;}
+.cat-banner-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;padding:20px 24px;}
+.cat-banner-overlay h2{font-family:'Tajawal',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,0.5);}
+.cat-banner-overlay span{color:rgba(255,255,255,0.8);font-size:0.82rem;margin-right:10px;}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:16px;}
+.prod-card{background:var(--white);border-radius:8px;overflow:hidden;border:1px solid var(--border);transition:all 0.25s;}
+.prod-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.09);border-color:#ccc;}
+.prod-img{height:145px;overflow:hidden;position:relative;background:var(--gray);}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;display:block;}
+.prod-card:hover .prod-img img{transform:scale(1.05);}
+.prod-badge{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--text);padding:2px 8px;border-radius:2px;font-size:0.65rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+.prod-info{padding:13px;}
+.prod-name{font-weight:700;font-size:0.88rem;margin-bottom:2px;color:var(--text);line-height:1.4;}
+.prod-unit{color:var(--muted);font-size:0.74rem;margin-bottom:11px;}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:4px;}
+.prod-price{font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.05rem;color:var(--text);}
+.prod-price small{font-size:0.68rem;color:var(--muted);font-weight:400;}
+.qty-ctrl{display:flex;align-items:center;gap:5px;}
+.qty-b{width:36px;height:36px;border-radius:8px;border:2px solid var(--gold);background:transparent;color:var(--dark);font-size:1.1rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.qty-b:hover{background:var(--gold-pale);}
+.qty-n{font-weight:900;font-size:1.05rem;min-width:24px;text-align:center;}
+.add-b{background:var(--gold);color:var(--dark);border:none;border-radius:8px;padding:12px 18px;font-size:0.95rem;font-weight:900;cursor:pointer;font-family:'Cairo',sans-serif;transition:all 0.2s;min-width:80px;letter-spacing:.3px;}
+.add-b:hover{background:var(--gold-light);}
+.flash{background:var(--white);}
+.flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.flash-card{background:var(--gray);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all 0.25s;cursor:pointer;}
+.flash-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 26px rgba(184,134,11,0.15);}
+.flash-img{height:125px;overflow:hidden;position:relative;}
+.flash-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;display:block;}
+.flash-card:hover .flash-img img{transform:scale(1.06);}
+.flash-disc{position:absolute;top:8px;right:8px;background:var(--gold-light);color:var(--text);padding:2px 8px;border-radius:2px;font-size:0.68rem;font-weight:900;}
+.flash-info{padding:12px;}
+.flash-name{color:var(--dark);font-weight:700;font-size:0.82rem;margin-bottom:5px;}
+.flash-prices{display:flex;align-items:center;gap:7px;margin-bottom:9px;}
+.f-old{color:var(--muted);text-decoration:line-through;font-size:0.78rem;}
+.f-new{color:var(--gold-light);font-family:'Tajawal',sans-serif;font-weight:900;font-size:1rem;}
+.flash-add{width:100%;background:var(--gold);color:var(--dark);border:none;border-radius:7px;padding:11px;font-size:0.92rem;font-weight:900;cursor:pointer;font-family:'Cairo',sans-serif;transition:background 0.2s;letter-spacing:.3px;}
+.flash-add:hover{background:#e8b420;}
+.why{background:#fafaf8;}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;}
+.why-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:24px 20px;transition:all 0.25s;}
+.why-card:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(184,134,11,0.1);transform:translateY(-2px);background:var(--gold-pale);}
+.why-icon-wrap{width:40px;height:40px;background:var(--gold-pale);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.why-icon-wrap svg{width:20px;height:20px;fill:var(--gold);}
+.why-t{font-weight:800;font-size:0.92rem;color:var(--text);margin-bottom:7px;}
+.why-d{color:var(--muted);font-size:0.83rem;line-height:1.68;}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.t-card{background:var(--white);border-radius:8px;padding:22px;border:1px solid var(--border);transition:all 0.25s;}
+.t-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.07);border-color:#ccc;}
+.t-stars{color:var(--gold);font-size:0.9rem;margin-bottom:10px;letter-spacing:2px;}
+.t-text{color:var(--muted);font-size:0.86rem;line-height:1.78;margin-bottom:14px;}
+.t-author{display:flex;align-items:center;gap:10px;}
+.t-av{width:36px;height:36px;border-radius:50%;background:var(--gold-pale);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.t-av svg{width:18px;height:18px;fill:var(--gold);}
+.t-name{font-weight:700;font-size:0.84rem;}
+.t-loc{color:var(--muted);font-size:0.72rem;}
+.del-wrap{padding:0 5% 68px;}
+.del-banner{border-radius:10px;overflow:hidden;position:relative;min-height:210px;display:flex;align-items:center;}
+.del-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+.del-ov{position:absolute;inset:0;background:linear-gradient(to left,rgba(255,255,255,0.1),rgba(26,80,36,0.88));}
+.del-content{position:relative;z-index:2;padding:40px 44px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;width:100%;}
+.del-text h2{font-family:'Tajawal',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:7px;}
+.del-text p{color:rgba(255,255,255,0.75);font-size:0.9rem;line-height:1.7;}
+.wa-btn{background:#25d366;color:#fff;padding:13px 24px;border-radius:4px;font-size:0.9rem;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;gap:9px;transition:all 0.22s;}
+.wa-btn svg{width:18px;height:18px;fill:#fff;}
+.wa-btn:hover{background:#1fb855;transform:translateY(-2px);}
+.branches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px;}
+.br-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:24px;transition:all 0.25s;position:relative;overflow:hidden;}
+.br-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);}
+.br-card:hover{box-shadow:0 8px 22px rgba(0,0,0,0.07);border-color:#ccc;}
+.br-num{font-family:'Tajawal',sans-serif;font-size:2.5rem;font-weight:900;color:var(--border);line-height:1;margin-bottom:8px;}
+.br-name{font-weight:800;font-size:0.95rem;margin-bottom:7px;}
+.br-addr{color:var(--muted);font-size:0.84rem;line-height:1.7;}
+.br-tag{display:inline-block;margin-top:11px;background:var(--gold-pale);border:1px solid var(--gold);color:var(--gold);padding:3px 10px;border-radius:2px;font-size:0.7rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;}
+footer{background:#fafaf8;color:var(--muted);padding:50px 5% 24px;}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:38px;}
+.foot-brand h3{font-family:'Tajawal',sans-serif;font-size:1.3rem;font-weight:900;color:var(--dark);margin-bottom:10px;}
+.foot-brand p{line-height:1.82;font-size:0.84rem;color:var(--muted);}
+.foot-socials{display:flex;gap:8px;margin-top:16px;}
+.soc-btn{width:34px;height:34px;border-radius:5px;background:var(--gold-pale);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background 0.2s;}
+.soc-btn:hover{background:var(--gold);border-color:var(--gold);}
+.soc-btn svg{width:15px;height:15px;fill:var(--gold);}
+.soc-btn:hover svg{fill:#fff;}
+.foot-col h4{font-weight:700;color:var(--dark);margin-bottom:13px;font-size:0.88rem;letter-spacing:.3px;}
+.foot-col ul{list-style:none;}
+.foot-col ul li{margin-bottom:8px;}
+.foot-col ul li a{color:var(--muted);text-decoration:none;font-size:0.82rem;transition:color 0.2s;}
+.foot-col ul li a:hover{color:var(--gold);}
+.foot-bottom{border-top:1px solid var(--border);padding-top:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.foot-bottom p{font-size:0.78rem;color:var(--muted);}
+.love{color:var(--gold-light);}
+.blip{color:var(--gold);font-weight:700;}
+.b-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.25);z-index:600;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.b-overlay.open{opacity:1;pointer-events:all;}
+.b-drawer{position:fixed;top:0;left:0;width:420px;max-width:100vw;height:100vh;background:var(--white);z-index:601;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;box-shadow:4px 0 30px rgba(0,0,0,0.15);}
+.b-drawer.open{transform:translateX(0);}
+.b-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.b-head h2{font-family:'Tajawal',sans-serif;font-size:1.2rem;font-weight:900;}
+.b-close{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--muted);width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:4px;}
+.b-close:hover{background:var(--gray);}
+.b-items{flex:1;overflow-y:auto;padding:12px 20px;}
+.b-empty{text-align:center;padding:48px 20px;color:var(--muted);}
+.b-empty svg{width:40px;height:40px;fill:var(--border);margin-bottom:12px;}
+.b-empty p{font-size:0.9rem;}
+.b-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.b-ico{width:44px;height:44px;border-radius:6px;overflow:hidden;flex-shrink:0;border:1px solid var(--border);}
+.b-ico img{width:100%;height:100%;object-fit:cover;}
+.b-info{flex:1;}
+.b-iname{font-weight:700;font-size:0.84rem;margin-bottom:1px;}
+.b-iprice{color:var(--text);font-weight:800;font-size:0.8rem;}
+.b-qty{display:flex;align-items:center;gap:5px;}
+.bq-b{width:32px;height:32px;border-radius:7px;border:2px solid var(--gold);background:transparent;color:var(--dark);font-size:1rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.bq-b:hover{background:var(--gold-pale);}
+.b-rm{background:none;border:none;color:#ccc;cursor:pointer;padding:3px;transition:color 0.2s;}
+.b-rm:hover{color:#e53e3e;}
+.b-rm svg{width:14px;height:14px;fill:currentColor;}
+.b-foot{padding:16px 20px;border-top:1px solid var(--border);}
+.b-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;}
+.b-total span{font-weight:700;font-size:0.9rem;}
+.b-total strong{font-family:'Tajawal',sans-serif;font-size:1.3rem;color:var(--text);font-weight:900;}
+.co-btns{display:flex;flex-direction:column;gap:10px;}
+.wa-co{background:#25d366;color:#fff;border:none;border-radius:4px;padding:12px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:background 0.2s;}
+.wa-co:hover{background:#1fb855;}
+.ph-co{background:var(--white);color:var(--dark);border:2px solid var(--border);border-radius:4px;padding:12px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:all 0.2s;}
+.ph-co:hover{border-color:var(--gold);background:var(--gold-pale);}
+.anim{opacity:0;transform:translateY(18px);transition:all 0.6s ease;}
+.anim.vis{opacity:1;transform:translateY(0);}
+@media(max-width:800px){.nav-links{display:none;}.trust-bar .trust-item:nth-child(n+4){display:none;}.foot-grid{grid-template-columns:1fr;gap:24px;}.b-drawer{width:100vw;}.del-content{padding:26px 22px;}}
+@media(max-width:500px){.trust-bar .trust-item:nth-child(n+3){display:none;}}
+@media(max-width:480px){
+  nav{padding:0 4%;height:58px;}.nav-logo{font-size:1rem;}.nav-logo span{display:none;}.basket-btn{height:42px;padding:0 14px;font-size:0.82rem;}
+  .hero{min-height:100svh;}.slide-content{padding:0 5% 80px;}.slide-inner h1{font-size:2rem;}.slide-inner p{font-size:0.88rem;}.slide-btns .btn-primary,.slide-btns .btn-outline{padding:11px 18px;font-size:0.84rem;}
+  .trust-bar{display:none;}.sl-dots{bottom:14px;}.urgency{flex-wrap:wrap;gap:5px;padding:8px 4%;justify-content:center;}.urgency p{font-size:0.78rem;text-align:center;}
+  .stats-inner{gap:12px;}.stat-n{font-size:1.5rem;}
+  .cats-grid{grid-template-columns:repeat(4,1fr);gap:7px;}.cat-card{padding:12px 4px;}.cat-emoji{font-size:1.5rem;}.cat-name{font-size:0.66rem;}
+  .prod-grid{grid-template-columns:repeat(2,1fr);gap:10px;}.prod-img{height:120px;}.prod-name{font-size:0.82rem;}.prod-price{font-size:0.95rem;}.add-b{padding:9px 10px;font-size:0.8rem;}.qty-b{width:28px;height:28px;}
+  .flash-grid{grid-template-columns:repeat(2,1fr);gap:10px;}.flash-img{height:100px;}
+  .why-grid{grid-template-columns:1fr 1fr;gap:10px;}.why-card{padding:16px 12px;}
+  .testi-grid{grid-template-columns:1fr;}.branches-grid{grid-template-columns:1fr;}.foot-grid{grid-template-columns:1fr;}
+  .del-content{padding:22px 18px;}.del-text h2{font-size:1.4rem;}
+  section{padding:48px 4%;}.sec-title{font-size:1.6rem;}.b-drawer{width:100vw;}
+  .cat-banner{height:110px;}.cat-banner-overlay h2{font-size:1.3rem;}
+  .price-tag{flex-wrap:wrap;gap:6px;}.p-new{font-size:1.2rem;}
+}
+@media(max-width:360px){.cats-grid{grid-template-columns:repeat(4,1fr);}.prod-grid{grid-template-columns:repeat(2,1fr);}.slide-inner h1{font-size:1.7rem;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 9H17l1.5-9H6zm0 11a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"/></svg></div>
+    سنتر رضا ابو لحمة <span>| كربلاء المقدسة</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categories">الأقسام</a></li>
+    <li><a href="#flash">العروض</a></li>
+    <li><a href="#shop">المنتجات</a></li>
+    <li><a href="#branches">الفروع</a></li>
+  </ul>
+  <button class="basket-btn" onclick="toggleBasket()">
+    <svg viewBox="0 0 24 24"><path d="M6 2l1.5 9H17l1.5-9H6zm0 11a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"/></svg>
+    السلة <span class="b-count" id="bCount">0</span>
+  </button>
+</nav>
+
+<div class="hero" id="hero">
+  <div class="slides-track" id="sTrack">
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=85&auto=format&fit=crop')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content"><div class="slide-inner">
+        <div class="slide-tag">كربلاء المقدسة — ثلاثة فروع</div>
+        <h1>مرحباً بك في <em>سنتر رضا ابو لحمة</em></h1>
+        <p>كل ما تحتاجه لبيتك في مكان واحد — منتجات طازجة، أسعار منافسة، وخدمة تسوق لا مثيل لها.</p>
+        <div class="slide-btns"><a href="#categories" class="btn-primary">تسوّق الآن</a><a href="#flash" class="btn-outline">عروض اليوم</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1600&q=85&auto=format&fit=crop')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content"><div class="slide-inner">
+        <div class="slide-tag">لحوم ودواجن — طازجة يومياً</div>
+        <h1>لحوم طازجة <em>بأسعار لا تُصدّق</em></h1>
+        <p>دجاج كامل طازج، لحم غنم، ولحم بقر — نستلم يومياً من أفضل المزارع المحلية.</p>
+        <div class="price-tag"><span class="p-old">7,000 د.ع</span><span class="p-new">5,000 د.ع</span><span class="p-save">وفّر 30%</span></div>
+        <div class="slide-btns"><button class="btn-primary" onclick="showCat('meat');document.getElementById('shop').scrollIntoView({behavior:'smooth'})">اطلب الآن</button></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1573246123716-6b1782bfc499?w=1600&q=85&auto=format&fit=crop')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content"><div class="slide-inner">
+        <div class="slide-tag">خضروات وفواكه طازجة كل صباح</div>
+        <h1>طازج من المزرعة <em>مباشرةً إلى بيتك</em></h1>
+        <p>أفضل الخضروات والفواكه المحلية — نستلم كل صباح لضمان أعلى درجات الطزاجة.</p>
+        <div class="slide-btns"><button class="btn-primary" onclick="showCat('veg');document.getElementById('shop').scrollIntoView({behavior:'smooth'})">تصفح الخضروات</button><a href="https://wa.me/9647840060044" target="_blank" class="btn-outline">تواصل معنا</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=85&auto=format&fit=crop')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content"><div class="slide-inner">
+        <div class="slide-tag">عروض الأسبوع الكبرى</div>
+        <h1>خصومات تصل <em>إلى 40% هذا الأسبوع</em></h1>
+        <p>عروض حصرية على المواد الغذائية ومنتجات التنظيف والمشروبات — لوقت محدود فقط.</p>
+        <div class="price-tag"><span class="p-old">15,000 د.ع</span><span class="p-new">9,000 د.ع</span><span class="p-save">وفّر 40%</span></div>
+        <div class="slide-btns"><a href="#flash" class="btn-primary">شاهد العروض</a></div>
+      </div></div>
+    </div>
+    <div class="slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=1600&q=85&auto=format&fit=crop')"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-content"><div class="slide-inner">
+        <div class="slide-tag">توصيل منزلي — كربلاء المقدسة</div>
+        <h1>اطلب من بيتك <em>ونوصّل لك بسرعة</em></h1>
+        <p>خدمة التوصيل المنزلي متاحة داخل كربلاء — اطلب عبر واتساب وانتظرنا.</p>
+        <div class="slide-btns"><a href="https://wa.me/9647840060044" target="_blank" class="btn-primary">اطلب عبر واتساب</a><a href="tel:07840060044" class="btn-outline">اتصل بنا</a></div>
+      </div></div>
+    </div>
+  </div>
+  <button class="sl-arr arr-r" onclick="mvSlide(1)"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" fill="none"/></svg></button>
+  <button class="sl-arr arr-l" onclick="mvSlide(-1)"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" fill="none"/></svg></button>
+  <div class="sl-dots" id="slDots"></div>
+  <div class="trust-bar">
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="#b8860b" stroke-width="2.5" fill="none"/></svg><span>منتجات طازجة يومياً</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#b8860b" stroke-width="2" fill="none"/><path d="M12 6v6l4 2" stroke="#b8860b" stroke-width="2" fill="none"/></svg><span>توصيل سريع</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#b8860b"/></svg><span>58K+ زبون راضٍ</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="#b8860b"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg><span>3 فروع في كربلاء</span></div>
+    <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#b8860b"/></svg><span>أسعار مضمونة</span></div>
+  </div>
+</div>
+
+<div class="urgency">
+  <p>عرض محدود — خصم <strong>30%</strong> على الدجاج الطازج، ينتهي خلال:</p>
+  <div class="cd">
+    <span class="cdu" id="cdH">03</span><span style="color:var(--gold-light);font-weight:900;padding:0 2px">:</span>
+    <span class="cdu" id="cdM">45</span><span style="color:var(--gold-light);font-weight:900;padding:0 2px">:</span>
+    <span class="cdu" id="cdS">00</span>
+  </div>
+</div>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <s>بيبسي وكوكاكولا — عروض يومية</s><s>KDD حليب طازج</s><s>أريال وتايد — أسعار خاصة</s>
+    <s>توصيل داخل كربلاء المقدسة</s><s>دجاج طازج بأفضل سعر</s><s>فرع حي الحسين</s>
+    <s>شارع العلقمي</s><s>شارع أحمد الوائلي</s><s>07840060044</s><s>خصومات تصل إلى 40%</s>
+    <s>بامبرز وهاجيز — منتجات الأطفال</s><s>نوتيلا وكيتكات — حلويات العيلة</s>
+    <s>بيبسي وكوكاكولا — عروض يومية</s><s>KDD حليب طازج</s><s>أريال وتايد — أسعار خاصة</s>
+    <s>توصيل داخل كربلاء المقدسة</s><s>دجاج طازج بأفضل سعر</s><s>فرع حي الحسين</s>
+    <s>شارع العلقمي</s><s>شارع أحمد الوائلي</s><s>07840060044</s><s>خصومات تصل إلى 40%</s>
+    <s>بامبرز وهاجيز — منتجات الأطفال</s><s>نوتيلا وكيتكات — حلويات العيلة</s>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-n">58K+</div><div class="stat-l">متابع على انستغرام</div></div>
+    <div class="stat-item"><div class="stat-n">3</div><div class="stat-l">فروع في كربلاء</div></div>
+    <div class="stat-item"><div class="stat-n">+500</div><div class="stat-l">منتج متوفر</div></div>
+    <div class="stat-item"><div class="stat-n">يومياً</div><div class="stat-l">توصيل منزلي</div></div>
+  </div>
+</div>
+
+<section class="categories anim" id="categories">
+  <div class="sec-eyebrow">الأقسام</div>
+  <h2 class="sec-title">تسوّق حسب القسم</h2>
+  <p class="sec-sub">اختر القسم الذي تريده وتصفح منتجاتنا بسهولة</p>
+  <div class="cats-grid" id="catsGrid"></div>
+</section>
+
+<section class="flash anim" id="flash">
+  <div class="sec-eyebrow">عروض حصرية</div>
+  <h2 class="sec-title">عروض اليوم</h2>
+  <p class="sec-sub">أسعار مخفضة لوقت محدود</p>
+  <div class="flash-grid" id="flashGrid"></div>
+</section>
+
+<section id="shop" class="shop-theme-default">
+  <div id="catBanner" style="display:none;" class="cat-banner">
+    <div class="cat-banner-overlay" id="catBannerContent"></div>
+  </div>
+  <div style="margin-bottom:26px;" id="shopHead">
+    <div class="sec-eyebrow">المنتجات</div>
+    <div style="font-family:'Tajawal',sans-serif;font-size:1.5rem;font-weight:900;color:var(--text);" id="curCat">اختر قسماً من الأعلى</div>
+  </div>
+  <div class="prod-grid" id="prodGrid">
+    <div style="grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);border:2px dashed var(--border);border-radius:8px;">
+      <p style="font-size:0.95rem;">اختر قسماً من الأعلى لعرض المنتجات</p>
+    </div>
+  </div>
+</section>
+
+<section class="why anim">
+  <div class="sec-eyebrow">لماذا نحن؟</div>
+  <h2 class="sec-title">نحرص على رضاك</h2>
+  <p class="sec-sub">نحرص على تقديم أفضل تجربة تسوق لأهالي كربلاء المقدسة</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke="#b8860b" stroke-width="2.5" fill="none"/></svg></div><div class="why-t">منتجات طازجة دائماً</div><div class="why-d">شحنات يومية لضمان أعلى جودة وطزاجة لكل منتج</div></div>
+    <div class="why-card"><div class="why-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#b8860b"/></svg></div><div class="why-t">أسعار لا تُنافَس</div><div class="why-d">أفضل الأسعار في السوق مع عروض وخصومات يومية</div></div>
+    <div class="why-card"><div class="why-icon-wrap"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1" fill="none" stroke="#b8860b" stroke-width="2"/><path d="M16 8h4l3 3v5h-7V8z" fill="none" stroke="#b8860b" stroke-width="2"/><circle cx="5.5" cy="18.5" r="2.5" fill="#b8860b"/><circle cx="18.5" cy="18.5" r="2.5" fill="#b8860b"/></svg></div><div class="why-t">توصيل داخل كربلاء</div><div class="why-d">خدمة توصيل منزلي سريعة — اطلب وانتظر على راحتك</div></div>
+    <div class="why-card"><div class="why-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="#b8860b"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg></div><div class="why-t">ثلاثة فروع قريبة</div><div class="why-d">فروع في حي الحسين، شارع العلقمي، وشارع أحمد الوائلي</div></div>
+    <div class="why-card"><div class="why-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#b8860b" stroke-width="2" fill="none"/><circle cx="9" cy="7" r="4" stroke="#b8860b" stroke-width="2" fill="none"/></svg></div><div class="why-t">58 ألف متابع</div><div class="why-d">ثقة عشرات الآلاف من أهالي كربلاء في اختياراتنا</div></div>
+    <div class="why-card"><div class="why-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="none" stroke="#b8860b" stroke-width="2"/></svg></div><div class="why-t">خدمة عملاء مميزة</div><div class="why-d">فريق دعم متاح عبر واتساب للرد على استفساراتك</div></div>
+  </div>
+</section>
+
+<section class="anim" style="background:#fafaf8;">
+  <div class="sec-eyebrow">آراء الزبائن</div>
+  <h2 class="sec-title">ماذا يقول أهل كربلاء؟</h2>
+  <p class="sec-sub">آلاف الزبائن الراضين يتحدثون عن تجربتهم معنا</p>
+  <div class="testi-grid">
+    <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-text">"أفضل سوبرماركت في كربلاء. الأسعار ممتازة والمنتجات طازجة دائماً. أنا زبون منذ سنوات ما أغير."</div><div class="t-author"><div class="t-av"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="#b8860b" stroke-width="2" fill="none"/><circle cx="12" cy="7" r="4" stroke="#b8860b" stroke-width="2" fill="none"/></svg></div><div><div class="t-name">أبو علي الكربلائي</div><div class="t-loc">حي الحسين، كربلاء</div></div></div></div>
+    <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-text">"التوصيل سريع ومحترم. طلبت عبر الواتساب ووصل الطلب بسرعة. خدمة ممتازة وسعر عدل."</div><div class="t-author"><div class="t-av"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="#b8860b" stroke-width="2" fill="none"/><circle cx="12" cy="7" r="4" stroke="#b8860b" stroke-width="2" fill="none"/></svg></div><div><div class="t-name">أم حسين</div><div class="t-loc">شارع العلقمي، كربلاء</div></div></div></div>
+    <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-text">"الدجاج والخضروات طازجة ما شاء الله. أقل سعر في المنطقة وأعلى جودة. نشتري يومياً منهم."</div><div class="t-author"><div class="t-av"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="#b8860b" stroke-width="2" fill="none"/><circle cx="12" cy="7" r="4" stroke="#b8860b" stroke-width="2" fill="none"/></svg></div><div><div class="t-name">حيدر العبيدي</div><div class="t-loc">شارع الوائلي، كربلاء</div></div></div></div>
+  </div>
+</section>
+
+<div class="del-wrap">
+  <div class="del-banner anim">
+    <div class="del-bg" style="background-image:url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1400&q=80&auto=format&fit=crop')"></div>
+    <div class="del-ov"></div>
+    <div class="del-content">
+      <div class="del-text"><h2>التوصيل الآن متاح</h2><p>اطلب من راحة بيتك — نوصّل لك داخل كربلاء المقدسة<br>تواصل معنا عبر واتساب للطلب المباشر</p></div>
+      <a href="https://wa.me/9647840060044" target="_blank" class="wa-btn"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" fill="#fff"/></svg>اطلب عبر واتساب</a>
+    </div>
+  </div>
+</div>
+
+<section id="branches">
+  <div class="sec-eyebrow">فروعنا</div>
+  <h2 class="sec-title">نحن قريبون منك</h2>
+  <p class="sec-sub">ثلاثة فروع تغطي كربلاء المقدسة</p>
+  <div class="branches-grid anim">
+    <div class="br-card"><div class="br-num">01</div><div class="br-name">فرع شارع أحمد الوائلي</div><div class="br-addr">شارع أحمد الوائلي، بالقرب من مستشفى زين العابدين</div><span class="br-tag">الفرع الأول</span></div>
+    <div class="br-card"><div class="br-num">02</div><div class="br-name">فرع شارع العلقمي</div><div class="br-addr">شارع العلقمي — كربلاء المقدسة</div><span class="br-tag">الفرع الثاني</span></div>
+    <div class="br-card"><div class="br-num">03</div><div class="br-name">فرع حي الحسين</div><div class="br-addr">حي الحسين — داخل المنتجع، كربلاء</div><span class="br-tag">الفرع الثالث</span></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <h3>سنتر رضا ابو لحمة</h3>
+      <p>وجهتك الأولى للتسوق المنزلي في كربلاء المقدسة — منتجات طازجة، أسعار منافسة، وخدمة من القلب.</p>
+      <div class="foot-socials">
+        <a href="https://www.instagram.com/center_reda/" target="_blank" class="soc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2.5"/></svg></a>
+        <a href="https://www.facebook.com/p/سنتر-رضا-ابو-لحمة-100057330974935/" target="_blank" class="soc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://wa.me/9647840060044" target="_blank" class="soc-btn"><svg viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#categories">الأقسام</a></li>
+        <li><a href="#flash">العروض</a></li>
+        <li><a href="#shop">المنتجات</a></li>
+        <li><a href="#branches">فروعنا</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>تواصل معنا</h4>
+      <ul>
+        <li><a href="https://wa.me/9647840060044">واتساب: 07840060044</a></li>
+        <li><a href="https://www.instagram.com/center_reda/">انستغرام: center_reda@</a></li>
+        <li><a href="#">كربلاء المقدسة، العراق</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2025 سنتر رضا ابو لحمة — جميع الحقوق محفوظة</p>
+    <p>صُنع بـ <span class="love">♥</span> بواسطة <span class="blip">Zia — Blip Studios</span></p>
+  </div>
+</footer>
+
+<div class="b-overlay" id="bOverlay" onclick="toggleBasket()"></div>
+<div class="b-drawer" id="bDrawer">
+  <div class="b-head"><h2>سلة التسوق</h2><button class="b-close" onclick="toggleBasket()">✕</button></div>
+  <div class="b-items" id="bItems">
+    <div class="b-empty"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 9H17l1.5-9H6zm0 11a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z" fill="#e8e4dc"/></svg><p>السلة فارغة — ابدأ التسوق</p></div>
+  </div>
+  <div class="b-foot" id="bFoot" style="display:none;">
+    <div class="b-total"><span>المجموع الكلي</span><strong id="bTotal">0 د.ع</strong></div>
+    <div class="co-btns">
+      <div style="background:var(--gray);border-radius:8px;padding:10px 12px;">
+        <div style="font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:600;">اختر طريقة الطلب:</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a id="waCo" href="#" target="_blank" class="wa-co"><svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>اطلب عبر واتساب</a>
+          <a href="tel:07840060044" class="ph-co"><svg viewBox="0 0 24 24" style="width:18px;height:18px;flex-shrink:0;fill:none;stroke:var(--gold);stroke-width:2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.09-1.09a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>اتصل لإتمام الطلب</a>
+          <button onclick="shareLocation()" id="locBtn" style="background:var(--white);color:var(--dark);border:2px solid var(--border);border-radius:8px;padding:13px;font-size:0.88rem;font-weight:800;cursor:pointer;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:var(--gold);stroke-width:2;flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            أرسل موقعك للتوصيل (اختياري)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CATEGORIES CONFIG ──
+const themes = {
+  meat:    {bg:'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(80,20,10,0.62)',section:'shop-theme-meat',emoji:'🥩'},
+  veg:     {bg:'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(10,50,20,0.58)',section:'shop-theme-veg',emoji:'🥦'},
+  dairy:   {bg:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(10,20,60,0.52)',section:'shop-theme-dairy',emoji:'🥛'},
+  bread:   {bg:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(60,30,5,0.52)',section:'shop-theme-bread',emoji:'🍞'},
+  cleaning:{bg:'https://images.unsplash.com/photo-1585232351009-aa87416fca55?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(10,20,60,0.58)',section:'shop-theme-cleaning',emoji:'🧹'},
+  drinks:  {bg:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(5,40,30,0.52)',section:'shop-theme-drinks',emoji:'🥤'},
+  sweets:  {bg:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(60,10,30,0.52)',section:'shop-theme-sweets',emoji:'🍫'},
+  grains:  {bg:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(50,30,5,0.52)',section:'shop-theme-grains',emoji:'🌾'},
+  canned:  {bg:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(40,20,10,0.55)',section:'shop-theme-canned',emoji:'🥫'},
+  frozen:  {bg:'https://images.unsplash.com/photo-1574672280600-4accfa5b6f98?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(10,20,50,0.55)',section:'shop-theme-frozen',emoji:'🧊'},
+  spices:  {bg:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(60,15,5,0.55)',section:'shop-theme-spices',emoji:'🌶️'},
+  baby:    {bg:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(60,10,40,0.45)',section:'shop-theme-baby',emoji:'👶'},
+  beauty:  {bg:'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(50,10,40,0.48)',section:'shop-theme-beauty',emoji:'💄'},
+  tobacco: {bg:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1200&q=80&auto=format&fit=crop',overlay:'rgba(20,20,20,0.62)',section:'shop-theme-tobacco',emoji:'🚬'},
+};
+
+// ── PRODUCT DATA — 14 SECTIONS ──
+const cats = {
+  meat:{name:'لحوم ودواجن',products:[
+    {id:'m1',name:'دجاج كامل طازج — Whole Chicken',unit:'كغم',price:5000,img:'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+    {id:'m2',name:'صدر دجاج بدون عظم',unit:'كغم',price:7500,img:'https://images.unsplash.com/photo-1599598425958-a903b8b6e023?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'m3',name:'لحم غنم مفروم',unit:'كغم',price:22000,img:'https://images.unsplash.com/photo-1607348512400-58a959a05a53?w=400&q=80&auto=format&fit=crop',badge:'عرض'},
+    {id:'m4',name:'لحم بقر مكعبات',unit:'كغم',price:18000,img:'https://images.unsplash.com/photo-1588347818036-529dad1c3b97?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'m5',name:'أجنحة دجاج — Chicken Wings',unit:'كغم',price:4500,img:'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'m6',name:'أفخاذ دجاج — Chicken Thighs',unit:'كغم',price:5500,img:'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'m7',name:'لحم عجل طازج',unit:'كغم',price:20000,img:'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+    {id:'m8',name:'سمك مجمد كاري',unit:'كغم',price:9000,img:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'m9',name:'نقانق دجاج — Chicken Sausage',unit:'علبة 500غ',price:4000,img:'https://images.unsplash.com/photo-1555661530-68c8e98db4e6?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'m10',name:'كبد دجاج طازج',unit:'كغم',price:3500,img:'https://images.unsplash.com/photo-1585631003741-e41d97fe8429?w=400&q=80&auto=format&fit=crop',badge:''},
+  ]},
+  veg:{name:'خضروات وفواكه',products:[
+    {id:'v1',name:'طماطم طازجة',unit:'كغم',price:1000,img:'https://images.unsplash.com/photo-1558818498-28c1e002b655?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+    {id:'v2',name:'خيار طازج',unit:'كغم',price:800,img:'https://images.unsplash.com/photo-1604977042946-1eecc30f269e?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v3',name:'بصل أصفر',unit:'كغم',price:750,img:'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v4',name:'بطاطا محلية',unit:'كغم',price:900,img:'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v5',name:'موز — Banana',unit:'كغم',price:2500,img:'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v6',name:'تفاح أحمر — Red Apple',unit:'كغم',price:3000,img:'https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=80&auto=format&fit=crop',badge:'عرض'},
+    {id:'v7',name:'برتقال طازج',unit:'كغم',price:1500,img:'https://images.unsplash.com/photo-1547514701-42782101795e?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v8',name:'خس طازج',unit:'رأس',price:500,img:'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v9',name:'فليفلة ملونة',unit:'كغم',price:2000,img:'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'v10',name:'رمان عراقي طازج',unit:'كغم',price:3500,img:'https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?w=400&q=80&auto=format&fit=crop',badge:'موسمي'},
+  ]},
+  dairy:{name:'ألبان وأجبان',products:[
+    {id:'d1',name:'KDD حليب كامل الدسم 1L',unit:'1 لتر',price:2500,img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80&auto=format&fit=crop',badge:'KDD'},
+    {id:'d2',name:'Almarai حليب طازج 1L',unit:'1 لتر',price:2750,img:'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&q=80&auto=format&fit=crop',badge:'Almarai'},
+    {id:'d3',name:'Safi حليب UHT 1L',unit:'1 لتر',price:2000,img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80&auto=format&fit=crop',badge:'Safi'},
+    {id:'d4',name:'Puck جبن كريمي 500غ',unit:'500غ',price:6500,img:'https://images.unsplash.com/photo-1452195100486-9cc805987862?w=400&q=80&auto=format&fit=crop',badge:'Puck'},
+    {id:'d5',name:'Kiri جبن كريمي 18 قطعة',unit:'18 قطعة',price:5500,img:'https://images.unsplash.com/photo-1559561853-08451507cbe7?w=400&q=80&auto=format&fit=crop',badge:'Kiri'},
+    {id:'d6',name:'Lurpak زبدة غير مملحة 200غ',unit:'200غ',price:5000,img:'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&q=80&auto=format&fit=crop',badge:'Lurpak'},
+    {id:'d7',name:'Marmum زبادي طبيعي كغم',unit:'كغم',price:3000,img:'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80&auto=format&fit=crop',badge:'Marmum'},
+    {id:'d8',name:'Nadec قشطة 200مل',unit:'200مل',price:2500,img:'https://images.unsplash.com/photo-1587314168485-3236d6710814?w=400&q=80&auto=format&fit=crop',badge:'Nadec'},
+    {id:'d9',name:'Almarai جبن شيدر شرائح 200غ',unit:'200غ',price:5500,img:'https://images.unsplash.com/photo-1619860001010-29a41ec1efc6?w=400&q=80&auto=format&fit=crop',badge:'Almarai'},
+    {id:'d10',name:'بيض دجاج طازج 30 بيضة',unit:'30 بيضة',price:7000,img:'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+  ]},
+  bread:{name:'خبز ومعجنات',products:[
+    {id:'b1',name:'خبز صمون طازج',unit:'كيس 6 قطع',price:1000,img:'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+    {id:'b2',name:'خبز عربي رقاق',unit:'كيس 5 أرغفة',price:750,img:'https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'b3',name:'Americana توست أبيض 500غ',unit:'500غ',price:2500,img:'https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=400&q=80&auto=format&fit=crop',badge:'Americana'},
+    {id:'b4',name:'Al Rawabi توست بالحبوب',unit:'500غ',price:3000,img:'https://images.unsplash.com/photo-1598373182133-52452f7691ef?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'b5',name:'كعك بالسمسم عراقي',unit:'250غ',price:2000,img:'https://images.unsplash.com/photo-1548369937-47519962c11a?w=400&q=80&auto=format&fit=crop',badge:'عراقي'},
+    {id:'b6',name:'بسكويت مرية الأصلي',unit:'علبة 400غ',price:2000,img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80&auto=format&fit=crop',badge:'عرض'},
+    {id:'b7',name:'مناقيش زعتر وزيت',unit:'قطعة',price:1500,img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+    {id:'b8',name:'خبز البرغر الطري',unit:'كيس 6 قطع',price:2000,img:'https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'b9',name:'بقلاوة عراقية',unit:'كغم',price:12000,img:'https://images.unsplash.com/photo-1519676867240-f03562e64548?w=400&q=80&auto=format&fit=crop',badge:'مميز'},
+    {id:'b10',name:'كليجة تمر عراقية',unit:'500غ',price:5000,img:'https://images.unsplash.com/photo-1609501676725-7186f017a4b4?w=400&q=80&auto=format&fit=crop',badge:'عراقي'},
+  ]},
+  cleaning:{name:'عناية ونظافة',products:[
+    {id:'c1',name:'Ariel مسحوق غسيل 3كغم',unit:'3 كغم',price:12000,img:'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&q=80&auto=format&fit=crop',badge:'Ariel'},
+    {id:'c2',name:'Tide مسحوق غسيل 2.5كغم',unit:'2.5 كغم',price:10500,img:'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&q=80&auto=format&fit=crop',badge:'Tide'},
+    {id:'c3',name:'Persil سائل غسيل 2L',unit:'2 لتر',price:9000,img:'https://images.unsplash.com/photo-1585232351009-aa87416fca55?w=400&q=80&auto=format&fit=crop',badge:'Persil'},
+    {id:'c4',name:'Fairy سائل صحون 750مل',unit:'750 مل',price:3500,img:'https://images.unsplash.com/photo-1585232351009-aa87416fca55?w=400&q=80&auto=format&fit=crop',badge:'Fairy'},
+    {id:'c5',name:'Dettol معقم يدين 500مل',unit:'500 مل',price:5000,img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80&auto=format&fit=crop',badge:'Dettol'},
+    {id:'c6',name:'Dove صابون الجسم 3 قطع',unit:'3 × 135غ',price:4500,img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80&auto=format&fit=crop',badge:'Dove'},
+    {id:'c7',name:'Head & Shoulders شامبو 400مل',unit:'400 مل',price:8000,img:'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&q=80&auto=format&fit=crop',badge:'H&S'},
+    {id:'c8',name:'Colgate معجون أسنان 100مل',unit:'100 مل',price:2500,img:'https://images.unsplash.com/photo-1559304822-9eb2813c9ede?w=400&q=80&auto=format&fit=crop',badge:'Colgate'},
+    {id:'c9',name:'Lux صابون حمام 3 قطع',unit:'3 × 120غ',price:3500,img:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&q=80&auto=format&fit=crop',badge:'Lux'},
+    {id:'c10',name:'ورق حمام 12 لفة',unit:'12 لفة',price:8000,img:'https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&q=80&auto=format&fit=crop',badge:''},
+  ]},
+  drinks:{name:'مشروبات وعصائر',products:[
+    {id:'dr1',name:'Pepsi Cola بيبسي كولا 1.5L',unit:'1.5 لتر',price:1500,img:'https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?w=400&q=80&auto=format&fit=crop',badge:'Pepsi'},
+    {id:'dr2',name:'Coca-Cola كوكاكولا 1.5L',unit:'1.5 لتر',price:1500,img:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80&auto=format&fit=crop',badge:'Coca-Cola'},
+    {id:'dr3',name:'7UP سفن أب 1.5L',unit:'1.5 لتر',price:1500,img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80&auto=format&fit=crop',badge:'7UP'},
+    {id:'dr4',name:'Mirinda ميرندا برتقال 1.5L',unit:'1.5 لتر',price:1500,img:'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80&auto=format&fit=crop',badge:'Mirinda'},
+    {id:'dr5',name:'Rani راني عصير فراولة 240مل',unit:'240 مل',price:750,img:'https://images.unsplash.com/photo-1546173159-315724a31696?w=400&q=80&auto=format&fit=crop',badge:'Rani'},
+    {id:'dr6',name:'Cappy كابي عصير برتقال 1L',unit:'1 لتر',price:2500,img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80&auto=format&fit=crop',badge:'Cappy'},
+    {id:'dr7',name:'Red Bull ريد بول 250مل',unit:'250 مل',price:3000,img:'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=400&q=80&auto=format&fit=crop',badge:'Red Bull'},
+    {id:'dr8',name:'Nescafe نسكافيه كلاسيك 100غ',unit:'100 غ',price:8000,img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&q=80&auto=format&fit=crop',badge:'Nescafe'},
+    {id:'dr9',name:'Lipton ليبتون شاي أصفر 100 كيس',unit:'100 كيس',price:5500,img:'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80&auto=format&fit=crop',badge:'Lipton'},
+    {id:'dr10',name:'Tang تانج برتقال 500غ',unit:'500 غ',price:4000,img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80&auto=format&fit=crop',badge:'Tang'},
+    {id:'dr11',name:'Aquafina ماء معدني 1.5L',unit:'1.5 لتر',price:750,img:'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80&auto=format&fit=crop',badge:'Aquafina'},
+    {id:'dr12',name:'Hayat ماء حياة 1.5L',unit:'1.5 لتر',price:500,img:'https://images.unsplash.com/photo-1616118132534-381148898bb4?w=400&q=80&auto=format&fit=crop',badge:'Hayat'},
+  ]},
+  sweets:{name:'حلويات وسناكس',products:[
+    {id:'sw1',name:'Cheetos تشيتوس مشوي 80غ',unit:'80 غ',price:1000,img:'https://images.unsplash.com/photo-1613919113640-25732ec5e61f?w=400&q=80&auto=format&fit=crop',badge:"Cheeto's"},
+    {id:'sw2',name:"Lay's ليز كلاسيك 150غ",unit:'150 غ',price:2000,img:'https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400&q=80&auto=format&fit=crop',badge:"Lay's"},
+    {id:'sw3',name:'Pringles برينجلز أصلي 165غ',unit:'165 غ',price:4500,img:'https://images.unsplash.com/photo-1613919113640-25732ec5e61f?w=400&q=80&auto=format&fit=crop',badge:'Pringles'},
+    {id:'sw4',name:'KitKat كيتكات 4 أصابع 45غ',unit:'45 غ',price:1500,img:'https://images.unsplash.com/photo-1534094462855-64bfaf14f7a1?w=400&q=80&auto=format&fit=crop',badge:'KitKat'},
+    {id:'sw5',name:'Snickers سنيكرز 50غ',unit:'50 غ',price:1500,img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80&auto=format&fit=crop',badge:'Snickers'},
+    {id:'sw6',name:'Twix تويكس 50غ',unit:'50 غ',price:1500,img:'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&q=80&auto=format&fit=crop',badge:'Twix'},
+    {id:'sw7',name:'Oreo أوريو أصلي 137غ',unit:'137 غ',price:2500,img:'https://images.unsplash.com/photo-1549394945-3e3d7cf47157?w=400&q=80&auto=format&fit=crop',badge:'Oreo'},
+    {id:'sw8',name:'Bounty باونتي 57غ',unit:'57 غ',price:2000,img:'https://images.unsplash.com/photo-1530982011887-3cc11cc85693?w=400&q=80&auto=format&fit=crop',badge:'Bounty'},
+    {id:'sw9',name:'Nutella نوتيلا 400غ',unit:'400 غ',price:9000,img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80&auto=format&fit=crop',badge:'Nutella'},
+    {id:'sw10',name:'Haribo هاريبو دودة 80غ',unit:'80 غ',price:2000,img:'https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=400&q=80&auto=format&fit=crop',badge:'Haribo'},
+  ]},
+  grains:{name:'حبوب وبقوليات',products:[
+    {id:'g1',name:'أرز عنبر عراقي 5كغم',unit:'5 كغم',price:15000,img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80&auto=format&fit=crop',badge:'عراقي'},
+    {id:'g2',name:'رز بسمتي هندي 5كغم',unit:'5 كغم',price:18000,img:'https://images.unsplash.com/photo-1536304993881-ff86e0c9c9c4?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'g3',name:'عدس أصفر 1كغم',unit:'1 كغم',price:2500,img:'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'g4',name:'حمص جاف 1كغم',unit:'1 كغم',price:3000,img:'https://images.unsplash.com/photo-1510693206972-df098062cb71?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'g5',name:'فاصوليا بيضاء 1كغم',unit:'1 كغم',price:2500,img:'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'g6',name:'دقيق أبيض 5كغم',unit:'5 كغم',price:8000,img:'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&q=80&auto=format&fit=crop',badge:'عرض'},
+    {id:'g7',name:'سكر أبيض 5كغم',unit:'5 كغم',price:10000,img:'https://images.unsplash.com/photo-1581600140682-d4e68c8cde32?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'g8',name:'فول مدمس 400غ',unit:'400 غ',price:2000,img:'https://images.unsplash.com/photo-1593001872095-7d5b3868dd20?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'g9',name:'برغل خشن عراقي 1كغم',unit:'1 كغم',price:2500,img:'https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?w=400&q=80&auto=format&fit=crop',badge:'عراقي'},
+    {id:'g10',name:'شعير 1كغم',unit:'1 كغم',price:1500,img:'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&q=80&auto=format&fit=crop',badge:''},
+  ]},
+  canned:{name:'معلبات وصلصات',products:[
+    {id:'cn1',name:'Heinz كاتشب طماطم 500غ',unit:'500 غ',price:4500,img:'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=400&q=80&auto=format&fit=crop',badge:'Heinz'},
+    {id:'cn2',name:'Maggi مرق دجاج 12 حبة',unit:'12 مكعب',price:2000,img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&q=80&auto=format&fit=crop',badge:'Maggi'},
+    {id:'cn3',name:'Knorr شوربة طماطم 65غ',unit:'65 غ',price:2500,img:'https://images.unsplash.com/photo-1547592180-85f173990554?w=400&q=80&auto=format&fit=crop',badge:'Knorr'},
+    {id:'cn4',name:'Americana تونة بالزيت 185غ',unit:'185 غ',price:3000,img:'https://images.unsplash.com/photo-1534482421-64566f976cfa?w=400&q=80&auto=format&fit=crop',badge:'Americana'},
+    {id:'cn5',name:'California Garden فاصوليا',unit:'400 غ',price:2500,img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&q=80&auto=format&fit=crop',badge:'Cal Garden'},
+    {id:'cn6',name:'Durra طحينية 800غ',unit:'800 غ',price:5000,img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80&auto=format&fit=crop',badge:'Durra'},
+    {id:'cn7',name:'Maggi صلصة طماطم 400غ',unit:'400 غ',price:2500,img:'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=400&q=80&auto=format&fit=crop',badge:'Maggi'},
+    {id:'cn8',name:'Heinz خل أبيض 400مل',unit:'400 مل',price:3000,img:'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=400&q=80&auto=format&fit=crop',badge:'Heinz'},
+    {id:'cn9',name:'Americana لحم مفروم معلب',unit:'200 غ',price:4000,img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&q=80&auto=format&fit=crop',badge:'Americana'},
+    {id:'cn10',name:'California Garden ذرة معلبة',unit:'400 غ',price:2000,img:'https://images.unsplash.com/photo-1471194402529-8e0f5a675de6?w=400&q=80&auto=format&fit=crop',badge:'Cal Garden'},
+  ]},
+  frozen:{name:'مجمدات',products:[
+    {id:'fr1',name:'McCain فرايز مجمد 1كغم',unit:'1 كغم',price:7000,img:'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400&q=80&auto=format&fit=crop',badge:'McCain'},
+    {id:'fr2',name:'Americana دجاج مجمد 1كغم',unit:'1 كغم',price:8000,img:'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=400&q=80&auto=format&fit=crop',badge:'Americana'},
+    {id:'fr3',name:'McCain بازلاء مجمدة 900غ',unit:'900 غ',price:5000,img:'https://images.unsplash.com/photo-1574672280600-4accfa5b6f98?w=400&q=80&auto=format&fit=crop',badge:'McCain'},
+    {id:'fr4',name:'Americana برغر دجاج مجمد',unit:'4 قطع',price:6500,img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80&auto=format&fit=crop',badge:'Americana'},
+    {id:'fr5',name:'خضروات مشكلة مجمدة 1كغم',unit:'1 كغم',price:4500,img:'https://images.unsplash.com/photo-1574672280600-4accfa5b6f98?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'fr6',name:'McCain ويدجز بطاطا 750غ',unit:'750 غ',price:6000,img:'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400&q=80&auto=format&fit=crop',badge:'McCain'},
+    {id:'fr7',name:'بيتزا مجمدة جاهزة',unit:'قطعة 400غ',price:8000,img:'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'fr8',name:'Americana ناجتس دجاج 400غ',unit:'400 غ',price:7000,img:'https://images.unsplash.com/photo-1562967914-608f82629710?w=400&q=80&auto=format&fit=crop',badge:'Americana'},
+    {id:'fr9',name:'ذرة مجمدة 900غ',unit:'900 غ',price:4000,img:'https://images.unsplash.com/photo-1471194402529-8e0f5a675de6?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'fr10',name:'سمك مجمد فيليه 500غ',unit:'500 غ',price:9000,img:'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80&auto=format&fit=crop',badge:'طازج'},
+  ]},
+  spices:{name:'توابل وزيوت',products:[
+    {id:'sp1',name:'Maggi كاري أصفر 100غ',unit:'100 غ',price:2000,img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80&auto=format&fit=crop',badge:'Maggi'},
+    {id:'sp2',name:'بهارات مشكلة عراقية 100غ',unit:'100 غ',price:1500,img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80&auto=format&fit=crop',badge:'عراقي'},
+    {id:'sp3',name:'ملح ناعم 1كغم',unit:'1 كغم',price:750,img:'https://images.unsplash.com/photo-1549494568-94a6b31f58c3?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'sp4',name:'فلفل أسود مطحون 100غ',unit:'100 غ',price:3000,img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'sp5',name:'زيت نخيل Awafi 1.8L',unit:'1.8 لتر',price:8000,img:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80&auto=format&fit=crop',badge:'Awafi'},
+    {id:'sp6',name:'زيت زيتون 750مل',unit:'750 مل',price:12000,img:'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&q=80&auto=format&fit=crop',badge:'مميز'},
+    {id:'sp7',name:'كمون مطحون 100غ',unit:'100 غ',price:2000,img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'sp8',name:'ورق غار مجفف 50غ',unit:'50 غ',price:1000,img:'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'sp9',name:'Maggi خل أبيض 500مل',unit:'500 مل',price:2500,img:'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=400&q=80&auto=format&fit=crop',badge:'Maggi'},
+    {id:'sp10',name:'طحينية سمسم 800غ',unit:'800 غ',price:6000,img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80&auto=format&fit=crop',badge:''},
+  ]},
+  baby:{name:'منتجات الأطفال',products:[
+    {id:'ba1',name:'Pampers بامبرز أكتيف بيبي مقاس 4',unit:'44 حبة',price:18000,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80&auto=format&fit=crop',badge:'Pampers'},
+    {id:'ba2',name:'Huggies هاجيز نيو بورن مقاس 2',unit:'50 حبة',price:16000,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80&auto=format&fit=crop',badge:'Huggies'},
+    {id:'ba3',name:'Pampers بامبرز مقاس 3 — 56 حبة',unit:'56 حبة',price:20000,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80&auto=format&fit=crop',badge:'Pampers'},
+    {id:'ba4',name:'Similac سيميلاك حليب أطفال 400غ',unit:'400 غ',price:25000,img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80&auto=format&fit=crop',badge:'Similac'},
+    {id:'ba5',name:'NAN نان حليب رضع مرحلة 1',unit:'400 غ',price:22000,img:'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&q=80&auto=format&fit=crop',badge:'NAN'},
+    {id:'ba6',name:"Johnson's بودرة أطفال 200غ",unit:'200 غ',price:6000,img:'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&q=80&auto=format&fit=crop',badge:"Johnson's"},
+    {id:'ba7',name:"Johnson's شامبو أطفال 300مل",unit:'300 مل',price:7000,img:'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&q=80&auto=format&fit=crop',badge:"Johnson's"},
+    {id:'ba8',name:'مناديل مبللة أطفال 80 قطعة',unit:'80 قطعة',price:3500,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'ba9',name:'Huggies مناديل مبللة 56 قطعة',unit:'56 قطعة',price:3000,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80&auto=format&fit=crop',badge:'Huggies'},
+    {id:'ba10',name:'Pampers بانتس مقاس 4 — 44 حبة',unit:'44 حبة',price:19000,img:'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&q=80&auto=format&fit=crop',badge:'Pampers'},
+  ]},
+  beauty:{name:'تجميل وعناية',products:[
+    {id:'be1',name:'Nivea كريم مرطب 400مل',unit:'400 مل',price:7500,img:'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80&auto=format&fit=crop',badge:'Nivea'},
+    {id:'be2',name:'Garnier واقي شمس SPF50+',unit:'50 مل',price:12000,img:'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80&auto=format&fit=crop',badge:'Garnier'},
+    {id:'be3',name:'Vaseline فازلين كريم 250مل',unit:'250 مل',price:5000,img:'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80&auto=format&fit=crop',badge:'Vaseline'},
+    {id:'be4',name:'Fair & Lovely كريم تفتيح 50غ',unit:'50 غ',price:4000,img:'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&q=80&auto=format&fit=crop',badge:'F&L'},
+    {id:'be5',name:'Nivea رول أون 50مل',unit:'50 مل',price:4500,img:'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80&auto=format&fit=crop',badge:'Nivea'},
+    {id:'be6',name:'Garnier شامبو لكل أنواع الشعر 400مل',unit:'400 مل',price:9000,img:'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&q=80&auto=format&fit=crop',badge:'Garnier'},
+    {id:'be7',name:'Vaseline غسول الجسم 400مل',unit:'400 مل',price:8000,img:'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&q=80&auto=format&fit=crop',badge:'Vaseline'},
+    {id:'be8',name:'Nivea شفاه كريم SPF 4.8غ',unit:'4.8 غ',price:3500,img:'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&q=80&auto=format&fit=crop',badge:'Nivea'},
+    {id:'be9',name:'مشط شعر بلاستيك',unit:'قطعة',price:1500,img:'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'be10',name:'ماكينة حلاقة Gillette',unit:'قطعة',price:7000,img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80&auto=format&fit=crop',badge:'Gillette'},
+  ]},
+  tobacco:{name:'سجائر ومشروبات طاقة',products:[
+    {id:'tb1',name:'Marlboro Red مارلبورو أحمر',unit:'علبة 20 سيجارة',price:5000,img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&auto=format&fit=crop',badge:'Marlboro'},
+    {id:'tb2',name:'Rothmans روثمانز أزرق',unit:'علبة 20 سيجارة',price:4500,img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&auto=format&fit=crop',badge:'Rothmans'},
+    {id:'tb3',name:'Esse إيسي فضي سليم',unit:'علبة 20 سيجارة',price:4000,img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&auto=format&fit=crop',badge:'Esse'},
+    {id:'tb4',name:'سومر عراقي Sumer',unit:'علبة 20 سيجارة',price:2500,img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&auto=format&fit=crop',badge:'عراقي'},
+    {id:'tb5',name:'Marlboro Gold مارلبورو ذهبي',unit:'علبة 20 سيجارة',price:5500,img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&auto=format&fit=crop',badge:'Marlboro'},
+    {id:'tb6',name:'Red Bull ريد بول 250مل',unit:'250 مل',price:3000,img:'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=400&q=80&auto=format&fit=crop',badge:'Red Bull'},
+    {id:'tb7',name:'Monster مونستر أخضر 500مل',unit:'500 مل',price:4000,img:'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=400&q=80&auto=format&fit=crop',badge:'Monster'},
+    {id:'tb8',name:'Power Horse مشروب طاقة 250مل',unit:'250 مل',price:2500,img:'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=400&q=80&auto=format&fit=crop',badge:''},
+    {id:'tb9',name:'Burn بيرن مشروب طاقة 250مل',unit:'250 مل',price:3000,img:'https://images.unsplash.com/photo-1622543925917-763c34d1a86e?w=400&q=80&auto=format&fit=crop',badge:'Burn'},
+    {id:'tb10',name:'Marlboro Blue مارلبورو أزرق',unit:'علبة 20 سيجارة',price:5000,img:'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&auto=format&fit=crop',badge:'Marlboro'},
+  ]},
+};
+
+// Build category grid
+const catKeys = Object.keys(cats);
+document.getElementById('catsGrid').innerHTML = catKeys.map(k => `
+  <div class="cat-card" id="cat-${k}" onclick="showCat('${k}')">
+    <div class="cat-emoji">${themes[k].emoji}</div>
+    <div class="cat-name">${cats[k].name}</div>
+  </div>`).join('');
+
+// Flash deals
+const flashDeals = [
+  {id:'m1',name:'دجاج كامل طازج',img:'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=400&q=80&auto=format&fit=crop',old:7000,price:5000,cat:'meat'},
+  {id:'dr1',name:'Pepsi 1.5L',img:'https://images.unsplash.com/photo-1567103472667-6898f3a79cf2?w=400&q=80&auto=format&fit=crop',old:2000,price:1500,cat:'drinks'},
+  {id:'d10',name:'بيض دجاج 30 بيضة',img:'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&q=80&auto=format&fit=crop',old:9000,price:7000,cat:'dairy'},
+  {id:'c1',name:'Ariel 3كغم',img:'https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=400&q=80&auto=format&fit=crop',old:15000,price:12000,cat:'cleaning'},
+  {id:'sw9',name:'Nutella 400غ',img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&q=80&auto=format&fit=crop',old:12000,price:9000,cat:'sweets'},
+  {id:'g1',name:'أرز عنبر عراقي 5كغم',img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80&auto=format&fit=crop',old:18000,price:15000,cat:'grains'},
+];
+
+const fp = p => p.toLocaleString('ar-IQ') + ' د.ع';
+const pct = (o,n) => '-' + Math.round((1-n/o)*100) + '%';
+
+document.getElementById('flashGrid').innerHTML = flashDeals.map(f => `
+  <div class="flash-card">
+    <div class="flash-img"><img src="${f.img}" alt="${f.name}" loading="lazy"><span class="flash-disc">${pct(f.old,f.price)}</span></div>
+    <div class="flash-info">
+      <div class="flash-name">${f.name}</div>
+      <div class="flash-prices"><span class="f-old">${fp(f.old)}</span><span class="f-new">${fp(f.price)}</span></div>
+      <button class="flash-add" onclick="addDirect('${f.cat}','${f.id}',this)">إضافة للسلة</button>
+    </div>
+  </div>`).join('');
+
+// ── BASKET ──
+let basket = {};
+function addDirect(ck,pid,btn){
+  const p = cats[ck].products.find(x=>x.id===pid); if(!p) return;
+  basket[pid] ? basket[pid].qty++ : (basket[pid]={...p,qty:1,catKey:ck});
+  if(btn){btn.textContent='تمت الإضافة ✓';btn.style.opacity='0.7';setTimeout(()=>{btn.textContent='إضافة للسلة';btn.style.opacity='';},2000);}
+  refreshCard(ck,pid); updateBasket(); bounce();
+}
+function addToBasket(ck,pid){
+  const p = cats[ck].products.find(x=>x.id===pid); if(!p) return;
+  basket[pid] = {...p,qty:1,catKey:ck};
+  refreshCard(ck,pid); updateBasket(); bounce();
+}
+function changeQty(ck,pid,d){
+  if(!basket[pid]) return;
+  basket[pid].qty += d;
+  if(basket[pid].qty <= 0) delete basket[pid];
+  refreshCard(ck,pid); updateBasket();
+}
+function refreshCard(ck,pid){
+  const el = document.querySelector(`#pc-${pid} .prod-footer`); if(!el) return;
+  const old = el.querySelector('.add-b,.qty-ctrl'); if(old) old.remove();
+  const inB = basket[pid] ? basket[pid].qty : 0;
+  const d = document.createElement('div');
+  d.innerHTML = inB === 0
+    ? `<button class="add-b" onclick="addToBasket('${ck}','${pid}')">إضافة</button>`
+    : `<div class="qty-ctrl"><button class="qty-b" onclick="changeQty('${ck}','${pid}',-1)">−</button><span class="qty-n">${inB}</span><button class="qty-b" onclick="changeQty('${ck}','${pid}',1)">+</button></div>`;
+  el.appendChild(d.firstElementChild);
+}
+function updateBasket(){
+  const items = Object.values(basket);
+  const qty = items.reduce((s,i)=>s+i.qty,0);
+  const total = items.reduce((s,i)=>s+i.qty*i.price,0);
+  const badge = document.getElementById('bCount');
+  badge.style.display = qty > 0 ? 'flex' : 'none';
+  badge.textContent = qty;
+  const con = document.getElementById('bItems');
+  if(!items.length){
+    con.innerHTML = `<div class="b-empty"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 9H17l1.5-9H6zm0 11a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z" fill="#e8e4dc"/></svg><p>السلة فارغة — ابدأ التسوق</p></div>`;
+    document.getElementById('bFoot').style.display='none'; return;
+  }
+  con.innerHTML = items.map(i=>`
+    <div class="b-item">
+      <div class="b-ico"><img src="${i.img}" alt="${i.name}"></div>
+      <div class="b-info"><div class="b-iname">${i.name}</div><div class="b-iprice">${fp(i.price*i.qty)}</div></div>
+      <div class="b-qty">
+        <button class="bq-b" onclick="changeQty('${i.catKey}','${i.id}',-1);updateBasket()">−</button>
+        <span style="font-weight:800;min-width:16px;text-align:center">${i.qty}</span>
+        <button class="bq-b" onclick="changeQty('${i.catKey}','${i.id}',1);updateBasket()">+</button>
+      </div>
+      <button class="b-rm" onclick="delete basket['${i.id}'];refreshCard('${i.catKey}','${i.id}');updateBasket()">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6M9 6V4h6v2"/></svg>
+      </button>
+    </div>`).join('');
+  document.getElementById('bFoot').style.display = 'block';
+  document.getElementById('bTotal').textContent = fp(total);
+  let msg = 'مرحباً، أريد طلب المنتجات التالية من سنتر رضا ابو لحمة:%0A%0A';
+  items.forEach(i=>{msg += `- ${i.name} × ${i.qty} = ${fp(i.price*i.qty)}%0A`;});
+  msg += `%0Aالمجموع: ${fp(total)}`;
+  document.getElementById('waCo').href = `https://wa.me/9647840060044?text=${msg}`;
+}
+function bounce(){const b=document.querySelector('.basket-btn');b.style.transform='scale(1.18)';setTimeout(()=>b.style.transform='',260);}
+function toggleBasket(){document.getElementById('bDrawer').classList.toggle('open');document.getElementById('bOverlay').classList.toggle('open');}
+
+// ── SHOW CATEGORY ──
+function showCat(k){
+  catKeys.forEach(key => document.getElementById('cat-'+key).classList.toggle('active', key===k));
+  const shop = document.getElementById('shop');
+  shop.className = themes[k].section;
+  const banner = document.getElementById('catBanner');
+  banner.style.display = 'block';
+  banner.style.backgroundImage = `url('${themes[k].bg}')`;
+  const content = document.getElementById('catBannerContent');
+  content.style.background = themes[k].overlay;
+  content.innerHTML = `<div><h2>${cats[k].name}</h2><span style="color:rgba(255,255,255,0.8);font-size:0.82rem;margin-right:10px;">${cats[k].products.length} منتج متوفر</span></div>`;
+  document.getElementById('curCat').textContent = cats[k].name;
+  const inB = pid => basket[pid] ? basket[pid].qty : 0;
+  document.getElementById('prodGrid').innerHTML = cats[k].products.map(p=>`
+    <div class="prod-card" id="pc-${p.id}">
+      <div class="prod-img">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
+      </div>
+      <div class="prod-info">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-unit">${p.unit}</div>
+        <div class="prod-footer">
+          <div class="prod-price">${fp(p.price)} <small>/ ${p.unit}</small></div>
+          ${inB(p.id)===0
+            ? `<button class="add-b" onclick="addToBasket('${k}','${p.id}')">إضافة</button>`
+            : `<div class="qty-ctrl"><button class="qty-b" onclick="changeQty('${k}','${p.id}',-1)">−</button><span class="qty-n">${inB(p.id)}</span><button class="qty-b" onclick="changeQty('${k}','${p.id}',1)">+</button></div>`}
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+}
+
+// ── SLIDER ──
+const SLIDES=5; let cur=0, timer;
+function buildDots(){
+  const n=document.getElementById('slDots');
+  for(let i=0;i<SLIDES;i++){
+    const d=document.createElement('button');
+    d.className='sl-dot'+(i===0?' active':'');
+    d.onclick=()=>{goTo(i);resetT();};
+    n.appendChild(d);
+  }
+}
+function goTo(n){
+  cur=(n+SLIDES)%SLIDES;
+  document.getElementById('sTrack').style.transform=`translateX(${cur*100}%)`;
+  document.querySelectorAll('.sl-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+}
+function mvSlide(d){goTo(cur-d);resetT();}
+function resetT(){clearInterval(timer);timer=setInterval(()=>goTo(cur+1),5500);}
+buildDots(); resetT();
+document.getElementById('hero').addEventListener('mouseenter',()=>clearInterval(timer));
+document.getElementById('hero').addEventListener('mouseleave',resetT);
+
+// ── COUNTDOWN ──
+let secs=3*3600+45*60;
+function tick(){
+  if(secs<=0) secs=3*3600+45*60;
+  const h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60),s=secs%60;
+  document.getElementById('cdH').textContent=String(h).padStart(2,'0');
+  document.getElementById('cdM').textContent=String(m).padStart(2,'0');
+  document.getElementById('cdS').textContent=String(s).padStart(2,'0');
+  secs--;
+}
+tick(); setInterval(tick,1000);
+
+// ── GPS LOCATION ──
+function shareLocation(){
+  const btn=document.getElementById('locBtn');
+  if(!navigator.geolocation){alert('الموقع غير مدعوم على هذا الجهاز');return;}
+  btn.innerHTML='<span>جاري تحديد الموقع...</span>';
+  btn.style.opacity='0.7';
+  navigator.geolocation.getCurrentPosition(
+    pos=>{
+      const lat=pos.coords.latitude.toFixed(6),lng=pos.coords.longitude.toFixed(6);
+      const mapsLink=`https://maps.google.com/?q=${lat},${lng}`;
+      const waBtn=document.getElementById('waCo');
+      const h=waBtn.href;
+      if(!h.includes('موقعي')) waBtn.href=h+`%0A%0A📍 موقعي: ${encodeURIComponent(mapsLink)}`;
+      btn.innerHTML=`<svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:#25d366;stroke-width:2.5"><path d="M20 6L9 17l-5-5"/></svg> تم تحديد الموقع — اضغط واتساب للإرسال`;
+      btn.style.background='#f0fff4';btn.style.borderColor='#25d366';btn.style.opacity='1';
+    },
+    ()=>{btn.textContent='تعذر تحديد الموقع — أدخله يدوياً';btn.style.opacity='1';}
+  );
+}
+
+// ── SCROLL ANIMATION ──
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:0.08});
+document.querySelectorAll('.anim').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
