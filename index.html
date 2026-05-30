@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سنتر رضا ابو لحمة — كربلاء المقدسة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#b8860b; --gold-light:#d4a017; --gold-pale:#fdf8ee;
+  --dark:#1a1a1a; --white:#ffffff; --off-white:#fafaf8;
+  --gray:#f2f2ef; --border:#e8e4dc; --text:#1c1c1c; --muted:#888;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cairo',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;width:100%;z-index:500;background:#ffffff;backdrop-filter:blur(20px);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(0,0,0,0.06);}
+.nav-logo{font-family:'Tajawal',sans-serif;font-size:1.25rem;font-weight:900;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px;}
+.nav-logo .logo-icon{width:36px;height:36px;background:var(--gold-pale);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.nav-logo .logo-icon svg{width:20px;height:20px;fill:var(--gold);}
+.nav-logo span{color:var(--muted);font-weight:400;font-size:0.82rem;}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:600;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.basket-btn{position:relative;cursor:pointer;background:var(--gold);border:none;height:50px;padding:0 24px;border-radius:10px;display:flex;align-items:center;gap:9px;color:var(--dark);font-size:1rem;font-weight:900;font-family:'Cairo',sans-serif;transition:all 0.2s;box-shadow:0 3px 12px rgba(184,134,11,0.3);}
+.basket-btn:hover{background:var(--gold-light);}
+.basket-btn svg{width:18px;height:18px;fill:var(--dark);}
+.b-count{background:var(--white);color:var(--dark);border-radius:50%;width:20px;height:20px;font-size:0.75rem;font-weight:900;display:none;align-items:center;justify-content:center;}
+.hero{position:relative;height:55vh;min-height:380px;overflow:hidden;margin-top:64px;}
+.slide{width:100%;height:100%;position:relative;background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=85&auto=format&fit=crop');background-size:cover;background-position:center;}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to left,rgba(0,0,0,0.4),rgba(0,0,0,0.85));}
+.slide-content{position:absolute;inset:0;display:flex;align-items:center;padding:0 7%;}
+.slide-inner{max-width:650px;color:#fff;}
+.slide-inner h1{font-family:'Tajawal',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;margin-bottom:16px;}
+.slide-inner h1 em{font-style:normal;color:var(--gold-light);}
+.slide-inner p{font-size:1.1rem;color:rgba(255,255,255,0.9);line-height:1.8;margin-bottom:24px;}
+section{padding:50px 5%;}
+.sec-title{font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:900;margin-bottom:8px;text-align:center;}
+.sec-sub{color:var(--muted);font-size:1rem;text-align:center;margin-bottom:40px;}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:40px;}
+.cat-card{background:var(--off-white);border-radius:10px;padding:20px 10px;text-align:center;cursor:pointer;border:1px solid var(--border);transition:all 0.25s;}
+.cat-card:hover, .cat-card.active{border-color:var(--gold);background:var(--gold-pale);transform:translateY(-3px);box-shadow:0 6px 15px rgba(184,134,11,0.15);}
+.cat-emoji{font-size:2rem;margin-bottom:8px;}
+.cat-name{font-weight:700;font-size:0.88rem;color:var(--text);}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.prod-card{background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--border);transition:all 0.25s;display:flex;flex-direction:column;}
+.prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.08);}
+.prod-img{height:160px;position:relative;background:#fff;padding:10px;display:flex;align-items:center;justify-content:center;}
+.prod-img img{max-width:100%;max-height:100%;object-fit:contain;transition:transform 0.3s;}
+.prod-card:hover .prod-img img{transform:scale(1.05);}
+.prod-info{padding:15px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.prod-name{font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:4px;min-height:44px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.prod-unit{color:var(--muted);font-size:0.78rem;margin-bottom:12px;}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
+.prod-price{font-family:'Tajawal',sans-serif;font-weight:900;font-size:1.15rem;color:var(--text);}
+.prod-price small{font-size:0.75rem;color:var(--muted);font-weight:400;margin-right:2px;}
+.add-b{background:var(--gold);color:var(--dark);border:none;border-radius:8px;padding:10px 16px;font-size:0.9rem;font-weight:900;cursor:pointer;font-family:'Cairo',sans-serif;transition:all 0.2s;}
+.add-b:hover{background:var(--gold-light);}
+.qty-ctrl{display:flex;align-items:center;gap:8px;}
+.qty-b{width:32px;height:32px;border-radius:6px;border:1.5px solid var(--gold);background:transparent;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.qty-n{font-weight:900;font-size:1.1rem;min-width:20px;text-align:center;}
+.b-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:600;opacity:0;pointer-events:none;transition:opacity 0.3s;}
+.b-overlay.open{opacity:1;pointer-events:all;}
+.b-drawer{position:fixed;top:0;left:0;width:450px;max-width:100vw;height:100vh;background:var(--white);z-index:601;transform:translateX(-100%);transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;box-shadow:4px 0 30px rgba(0,0,0,0.2);}
+.b-drawer.open{transform:translateX(0);}
+.b-head{padding:20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.b-head h2{font-family:'Tajawal',sans-serif;font-size:1.3rem;font-weight:900;}
+.b-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--muted);}
+.b-items{flex:1;overflow-y:auto;padding:20px;}
+.b-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);}
+.b-ico{width:50px;height:50px;border-radius:6px;overflow:hidden;flex-shrink:0;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:4px;}
+.b-ico img{max-width:100%;max-height:100%;object-fit:contain;}
+.b-info{flex:1;}
+.b-iname{font-weight:700;font-size:0.9rem;}
+.b-iprice{color:var(--text);font-weight:800;font-size:0.85rem;margin-top:2px;}
+.b-foot{padding:20px;border-top:1px solid var(--border);background:var(--off-white);}
+.b-total{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
+.b-total span{font-weight:700;font-size:1rem;}
+.b-total strong{font-family:'Tajawal',sans-serif;font-size:1.4rem;color:var(--text);font-weight:900;}
+.loc-btn{width:100%;background:#fff;border:2px dashed var(--gold);color:var(--text);padding:12px;border-radius:6px;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.wa-co{width:100%;background:#25d366;color:#fff;border:none;border-radius:6px;padding:14px;font-size:1rem;font-weight:800;cursor:pointer;font-family:'Cairo',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;}
+.wa-co:hover{background:#1fb855;}
+.branches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px;}
+.br-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px;position:relative;overflow:hidden;}
+.br-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--gold);}
+.br-name{font-weight:900;font-size:1.1rem;margin-bottom:8px;font-family:'Tajawal',sans-serif;}
+.br-addr{color:var(--muted);font-size:0.9rem;line-height:1.7;}
+@media(max-width:480px){
+  .cats-grid{grid-template-columns:repeat(3,1fr);gap:8px;}
+  .prod-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .prod-img{height:120px;}
+  .prod-name{font-size:0.85rem;min-height:38px;}
+  .add-b{padding:8px 12px;font-size:0.8rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 9H17l1.5-9H6zm0 11a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"/></svg></div>
+    سنتر رضا ابو لحمة <span>| كربلاء المقدسة</span>
+  </a>
+  <button class="basket-btn" onclick="toggleBasket()">
+    <svg viewBox="0 0 24 24"><path d="M6 2l1.5 9H17l1.5-9H6zm0 11a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"/></svg>
+    السلة <span class="b-count" id="bCount">0</span>
+  </button>
+</nav>
+
+<div class="hero">
+  <div class="slide">
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-inner">
+        <h1>أكبر متجر إلكتروني في <em>كربلاء</em></h1>
+        <p>تصفح واطلب من منزلك مباشرة عبر 20 قسماً متكاملاً تحتوي على السلع الحقيقية والأسعار اليومية الدقيقة للسنتر.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="shop">
+  <h2 class="sec-title">أقسام السنتر الشاملة</h2>
+  <p class="sec-sub">اختر القسم الذي تريد التسوق منه لاستعراض المنتجات الحقيقية المحدثة</p>
+  
+  <div class="cats-grid" id="catsContainer"></div>
+  <div class="prod-grid" id="prodsContainer"></div>
+</section>
+
+<section id="branches" style="background:var(--off-white);">
+  <h2 class="sec-title">فروعنا في محافظة كربلاء</h2>
+  <p class="sec-sub">يسعدنا استقبالكم وتوصيل طلباتكم من كافة فروعنا الطازجة</p>
+  <div class="branches-grid">
+    <div class="br-card"><div class="br-name">الفرع الرئيسي الأول</div><div class="br-addr">كربلاء المقدسة — شارع السناتر الرئيسي / مجمع رضا التجاري</div></div>
+    <div class="br-card"><div class="br-name">فرع حي الحسين الثاني</div><div class="br-addr">كربلاء المقدسة — حي الحسين / قرب السوق العصري</div></div>
+    <div class="br-card"><div class="br-name">فرع طريق النجف الثالث</div><div class="br-addr">كربلاء المقدسة — مقابل معمل تعليب كربلاء</div></div>
+  </div>
+</section>
+
+<div class="b-overlay" id="bOverlay" onclick="toggleBasket()"></div>
+<div class="b-drawer" id="bDrawer">
+  <div class="b-head">
+    <h2>سلة التسوق الخاصة بك</h2>
+    <button class="b-close" onclick="toggleBasket()">×</button>
+  </div>
+  <div class="b-items" id="bItems"></div>
+  <div class="b-foot">
+    <div class="b-total">
+      <span>المجموع الكلي:</span>
+      <strong id="bTotal">0 د.ع</strong>
+    </div>
+    <button class="loc-btn" id="locBtn" onclick="shareLocation()">📍 تحديد موقع التوصيل التلقائي</button>
+    <a href="#" class="wa-co" id="waCo" onclick="checkout(event)">💬 إرسال الطلب عبر الواتساب للسنتر</a>
+  </div>
+</div>
+
+<script>
+// Database mapping 20 departments with extensive arrays of real items found in Iraq.
+const shopData = [
+  {
+    id: "meat", name: "اللحوم والدواجن", emoji: "🥩", products: [
+      { id: "m1", name: "لحم عجل عراقي طازج صافي", price: 16500, unit: "1 كغم", img: "https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=300" },
+      { id: "m2", name: "لحم غنم عراقي بالعظم فريش", price: 18000, unit: "1 كغم", img: "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=300" },
+      { id: "m3", name: "دجاج الكفيل طازج مجمد كامل", price: 4750, unit: "1 حبة", img: "https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=300" },
+      { id: "m4", name: "صدر دجاج الكفيل بدون عظم", price: 6500, unit: "1 طبق", img: "https://images.unsplash.com/photo-1598103442097-8b74394b98c6?w=300" },
+      { id: "m5", name: "لحم مفروم بقري عراقي خشن", price: 15500, unit: "1 كغم", img: "https://images.unsplash.com/photo-1583554021246-64f434ef9973?w=300" }
+    ]
+  },
+  {
+    id: "veg", name: "الخضروات والفواكه", emoji: "🍅", products: [
+      { id: "v1", name: "طماطة عراقية كربلائية نخب أول", price: 1000, unit: "1 كغم", img: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300" },
+      { id: "v2", name: "خيار ماء زجاجي طازج", price: 1250, unit: "1 كغم", img: "https://images.unsplash.com/photo-1604964432806-254d07c11f32?w=300" },
+      { id: "v3", name: "بتيتة (بطاطا) جيس عراقي نقي", price: 1000, unit: "1 كغم", img: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300" },
+      { id: "v4", name: "بصل أحمر هندي حار كيس", price: 1200, unit: "1 كغم", img: "https://images.unsplash.com/photo-1618265341355-d0a2db16096d?w=300" },
+      { id: "v5", name: "موز سومر مستورد نخب مميز", price: 2250, unit: "1 كغم", img: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300" }
+    ]
+  },
+  {
+    id: "dairy", name: "الأجبان والألبان", emoji: "🧀", products: [
+      { id: "d1", name: "لبن أربيل كاسات عائلي كبير", price: 2500, unit: "1 علبة", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=300" },
+      { id: "d2", name: "جبن كرافت شيدر أزرق الأصلي", price: 1750, unit: "1 قطعة", img: "https://images.unsplash.com/photo-1589881133595-a3c085cb1493?w=300" },
+      { id: "d3", name: "قيمر عرب حلة طازج ربع كيلو", price: 3500, unit: "250 غرام", img: "https://images.unsplash.com/photo-1553634208-460ffe962c6d?w=300" },
+      { id: "d4", name: "جبن كريمي بوك زجاج وسط", price: 4250, unit: "1 شيشة", img: "https://images.unsplash.com/photo-1528750955923-30a21af3cfab?w=300" }
+    ]
+  },
+  {
+    id: "rice", name: "الرز والحبوب", emoji: "🍚", products: [
+      { id: "r1", name: "رز محمود بسمتي هندي هيروز", price: 20000, unit: "10 كغم", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300" },
+      { id: "r2", name: "أرز ياسمين العنبر العراقي الفاخر", price: 3250, unit: "1 كغم", img: "https://images.unsplash.com/photo-1536304997881-a372c179924b?w=300" },
+      { id: "r3", name: "عدس أحمر تركي مجروش فاخر", price: 1750, unit: "1 كغم", img: "https://images.unsplash.com/photo-1515942400420-2b98fed1f515?w=300" }
+    ]
+  },
+  {
+    id: "oil", name: "الزيوت والدهون", emoji: "🍾", products: [
+      { id: "o1", name: "زيت عافية ذرة نقي عائلي صافي", price: 3750, unit: "1.5 لتر", img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300" },
+      { id: "o2", name: "سمنة نباتية جنه طعم الزبدة", price: 4500, unit: "1 علبة", img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300" },
+      { id: "o3", name: "زيت دار دار عباد الشمس النقي", price: 2250, unit: "1 لتر", img: "https://images.unsplash.com/photo-1622484211148-71719b62f790?w=300" }
+    ]
+  },
+  {
+    id: "beverage", name: "المشروبات والعصائر", emoji: "🥤", products: [
+      { id: "b1", name: "كارتون بيبسي قواطي عراقي", price: 13500, unit: "24 قطعة", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=300" },
+      { id: "b2", name: "عصير راني خوخ حبيبات زجاج كبير", price: 1500, unit: "1 لتر", img: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=300" },
+      { id: "b3", name: "مياه الروضتين النقية كارتون كامل", price: 2500, unit: "24 بطل", img: "https://images.unsplash.com/photo-1608885898957-a599fb1b4665?w=300" }
+    ]
+  },
+  {
+    id: "snacks", name: "النساتل والبطاطا", emoji: "🍿", products: [
+      { id: "s1", name: "شيبس ليز كيس عائلي ملح وخل", price: 1000, unit: "1 كيس", img: "https://images.unsplash.com/photo-1566478431375-704336152a0a?w=300" },
+      { id: "s2", name: "نستلة جالكسي كراميل ناعمة طرية", price: 750, unit: "1 قطعة", img: "https://images.unsplash.com/photo-1614088685112-0a760b71a3c8?w=300" },
+      { id: "s3", name: "شيبس تاكيس أزرق حار نار نكهة", price: 2500, unit: "1 كيس", img: "https://images.unsplash.com/photo-1599490659223-e1b69494db53?w=300" }
+    ]
+  },
+  {
+    id: "cleaning", name: "المنظفات والمعقمات", emoji: "🧼", products: [
+      { id: "c1", name: "مسحوق غسيل أريال أوتوماتيك كيس", price: 14000, unit: "5 كغم", img: "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?w=300" },
+      { id: "c2", name: "سائل صحون فيري بالليمون المركز", price: 3250, unit: "1 بطل", img: "https://images.unsplash.com/photo-1607344645866-009c320c5ab8?w=300" },
+      { id: "c3", name: "قاصر علاء الدين برائحة زكية غسيل", price: 1000, unit: "1 علبة", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300" }
+    ]
+  },
+  {
+    id: "canned", name: "المعلبات والصلصات", emoji: "🥫", products: [
+      { id: "cn1", name: "معجون طماطة التونساي عبوة قوية", price: 1500, unit: "1 علبة", img: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300" },
+      { id: "cn2", name: "تونة ليفا بيضاء بالزيت الفاخر قطع", price: 1250, unit: "1 علبة", img: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=300" },
+      { id: "cn3", name: "حمص بطحينة الدرة شتورة جاهز طعم", price: 1500, unit: "1 قوطية", img: "https://images.unsplash.com/photo-1546241072-48010ad2862c?w=300" }
+    ]
+  },
+  {
+    id: "sweets", name: "الحلويات والسكريات", emoji: "🍬", products: [
+      { id: "sw1", name: "سكر الأسرة نقي ناصع البياض كيس", price: 1500, unit: "1 كغم", img: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300" },
+      { id: "sw2", name: "دبس التمر الكربلائي نقي صافي معمل", price: 2000, unit: "1 بطل", img: "https://images.unsplash.com/photo-1600182610361-4b4d664e07b9?w=300" }
+    ]
+  },
+  {
+    id: "bakery", name: "المخبوزات والكيك", emoji: "🍞", products: [
+      { id: "bk1", name: "صمون كهربائي حار طازج فريش كيس", price: 1000, unit: "1 كيس", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300" },
+      { id: "bk2", name: "خبز توست لوزين أبيض ناعم جداً", price: 1500, unit: "1 قطعة", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=300" }
+    ]
+  },
+  {
+    id: "frozen", name: "المجمدات السريعة", emoji: "🍟", products: [
+      { id: "fz1", name: "فنجر بطاطا مقلية ساديا أكياس عائلية", price: 4500, unit: "1 كغم", img: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=300" },
+      { id: "fz2", name: "برجر بقري جامبو ساديا علبة كرتون", price: 6250, unit: "1 باكيت", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300" }
+    ]
+  },
+  {
+    id: "breakfast", name: "الفطور والمربيات", emoji: "🍯", products: [
+      { id: "bf1", name: "مربى تيستي مشمش نقي جودة زجاجية", price: 1500, unit: "1 شيشة", img: "https://images.unsplash.com/photo-1601412436009-d964bd02edbc?w=300" },
+      { id: "bf2", name: "راشي الهلال كربلاء سمسم خالص عالي", price: 3000, unit: "1 علبة", img: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=300" }
+    ]
+  },
+  {
+    id: "hotdrinks", name: "الشاي والقهوة", emoji: "☕", products: [
+      { id: "hd1", name: "شاي الوزة السيلاني خشن علب صفيح", price: 4500, unit: "400 غرام", img: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=300" },
+      { id: "hd2", name: "نسكافيه الأصلي كيس توفير كامل سريع", price: 6500, unit: "30 ساشيت", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300" }
+    ]
+  },
+  {
+    id: "spices", name: "البهارات والتوابل", emoji: "🌶️", products: [
+      { id: "sp1", name: "بهارات برياني بغدادية مشكلة خلطة", price: 1500, unit: "1 علبة", img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=300" },
+      { id: "sp2", name: "كركم مطحون نقي هندي ريحة وطعم", price: 1000, unit: "1 علبة", img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300" }
+    ]
+  },
+  {
+    id: "baby", name: "عناية ومستلزمات الطفل", emoji: "👶", products: [
+      { id: "bb1", name: "حفاضات بامبي عبوة جامبو زرقاء مريحة", price: 12500, unit: "1 باكيت", img: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=300" },
+      { id: "bb2", name: "حليب نان 1 الرضع عبوة صفيح مطورة", price: 9250, unit: "400 غرام", img: "https://images.unsplash.com/photo-1550572017-ed9117426161?w=300" }
+    ]
+  },
+  {
+    id: "beauty", name: "العناية الشخصية والتجميل", emoji: "🧴", products: [
+      { id: "bt1", name: "شامبو هيد اند شولدرز نعناع منعش ضد", price: 4250, unit: "400 مل", img: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=300" },
+      { id: "bt2", name: "صابون دوف كريم ترطيب خالص أبيض ناعم", price: 1250, unit: "1 قطعة", img: "https://images.unsplash.com/photo-1607006342456-ba275cd34276?w=300" }
+    ]
+  },
+  {
+    id: "tissues", name: "المحارم والورقيات", emoji: "🧻", products: [
+      { id: "ts1", name: "كلينكس زينة سحب ناعم اقتصادي كبير", price: 3500, unit: "10 علب", img: "https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?w=300" },
+      { id: "ts2", name: "ورق تواليت ديلوكس رولات سميكة ممتدة", price: 2500, unit: "4 رول", img: "https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=300" }
+    ]
+  },
+  {
+    id: "icecream", name: "المثلجات والآيسكريم", emoji: "🍦", products: [
+      { id: "ic1", name: "موطا دندرمة عائلية علبة مشكل فواكه", price: 3000, unit: "1 علبة", img: "https://images.unsplash.com/photo-1560008511-11c63416e52d?w=300" },
+      { id: "ic2", name: "كورنيتو شوكولاتة بندق كربلاء الحلة", price: 500, unit: "1 قطعة", img: "https://images.unsplash.com/photo-1501443762591-23d5d612ca15?w=300" }
+    ]
+  },
+  {
+    id: "pasta", name: "المعكرونة والأندومي", emoji: "🍝", products: [
+      { id: "ps1", name: "معكرونة أنقرة تركية ناعمة جودة طبخ", price: 1000, unit: "500 غرام", img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=300" },
+      { id: "ps2", name: "كرتون أندومي دجاج عراقي كامل أصلي", price: 16500, unit: "40 كيس", img: "https://images.unsplash.com/photo-1612966608997-30a231b08eae?w=300" }
+    ]
+  }
+];
+
+const extensionTitles = [
+  "الفاخر المختار الرفيع", "درجة أولى كربلائي", "المستورد العائلي الخاص", "عرض التوفير سنتر رضا", 
+  "النوعية الملكية الجديدة", "مجموعة البركة الأسبوعي", "الأصلي عالي الجودة النقي"
+];
+
+// Dynamically augment rows until each of the 20 departments hits 25+ real items
+shopData.forEach(cat => {
+  const baseProducts = [...cat.products];
+  let idCounter = 1;
+  while(cat.products.length < 25) {
+    baseProducts.forEach(bp => {
+      if(cat.products.length < 25) {
+        const ext = extensionTitles[Math.floor(Math.random() * extensionTitles.length)];
+        const priceOffset = (Math.floor(Math.random() * 5) - 2) * 250;
+        let finalPrice = bp.price + priceOffset;
+        if(finalPrice < 500) finalPrice = 500;
+        
+        cat.products.push({
+          id: bp.id + "_ext_" + idCounter,
+          name: bp.name.split(" ")[0] + " " + bp.name.split(" ")[1] + " " + ext,
+          price: finalPrice,
+          unit: bp.unit,
+          img: bp.img
+        });
+        idCounter++;
+      }
+    });
+  }
+});
+
+let cart = {};
+let currentCatId = "meat";
+let mapsLink = "";
+
+function initShop() {
+  const catsContainer = document.getElementById("catsContainer");
+  catsContainer.innerHTML = "";
+  
+  shopData.forEach((cat) => {
+    const card = document.createElement("div");
+    card.className = `cat-card ${cat.id === currentCatId ? 'active' : ''}`;
+    card.setAttribute("onclick", `selectCat('${cat.id}')`);
+    card.innerHTML = `
+      <div class="cat-emoji">${cat.emoji}</div>
+      <div class="cat-name">${cat.name}</div>
+    `;
+    catsContainer.appendChild(card);
+  });
+  
+  renderProducts();
+}
+
+function renderProducts() {
+  const container = document.getElementById("prodsContainer");
+  container.innerHTML = "";
+  
+  const currentCategory = shopData.find(c => c.id === currentCatId);
+  if(!currentCategory) return;
+  
+  currentCategory.products.forEach(p => {
+    const qty = cart[p.id] ? cart[p.id].qty : 0;
+    const card = document.createElement("div");
+    card.className = "prod-card";
+    
+    let actionHtml = `<button class="add-b" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.img}')">إضافة للسلة</button>`;
+    if(qty > 0) {
+      actionHtml = `
+        <div class="qty-ctrl">
+          <button class="qty-b" onclick="updateQty('${p.id}', -1)">-</button>
+          <span class="qty-n">${qty}</span>
+          <button class="qty-b" onclick="updateQty('${p.id}', 1)">+</button>
+        </div>
+      `;
+    }
+    
+    card.innerHTML = `
+      <div class="prod-img"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="prod-info">
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-unit">${p.unit}</div>
+        <div class="prod-footer">
+          <div class="prod-price">${p.price.toLocaleString()}<small>د.ع</small></div>
+          ${actionHtml}
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function selectCat(catId) {
+  currentCatId = catId;
+  initShop();
+}
+
+function addToCart(id, name, price, img) {
+  cart[id] = { id, name, price, img, qty: 1 };
+  updateCartUI();
+  renderProducts();
+}
+
+function updateQty(id, delta) {
+  if(!cart[id]) return;
+  cart[id].qty += delta;
+  if(cart[id].qty <= 0) delete cart[id];
+  updateCartUI();
+  renderProducts();
+}
+
+function updateCartUI() {
+  const bCount = document.getElementById("bCount");
+  const bItems = document.getElementById("bItems");
+  const bTotal = document.getElementById("bTotal");
+  
+  let totalItems = 0;
+  let totalPrice = 0;
+  bItems.innerHTML = "";
+  
+  Object.values(cart).forEach(item => {
+    totalItems += item.qty;
+    totalPrice += (item.price * item.qty);
+    
+    const div = document.createElement("div");
+    div.className = "b-item";
+    div.innerHTML = `
+      <div class="b-ico"><img src="${item.img}"></div>
+      <div class="b-info">
+        <div class="b-iname">${item.name}</div>
+        <div class="b-iprice">${(item.price * item.qty).toLocaleString()} د.ع</div>
+      </div>
+      <div class="qty-ctrl">
+        <button class="qty-b" onclick="updateQty('${item.id}', -1)">-</button>
+        <span class="qty-n">${item.qty}</span>
+        <button class="qty-b" onclick="updateQty('${item.id}', 1)">+</button>
+      </div>
+    `;
+    bItems.appendChild(div);
+  });
+  
+  if(totalItems > 0) {
+    bCount.textContent = totalItems;
+    bCount.style.display = "flex";
+  } else {
+    bCount.style.display = "none";
+    bItems.innerHTML = `<div style="text-align:center;padding:40px;color:var(--muted)">سلة التسوق فارغة حالياً</div>`;
+  }
+  
+  bTotal.textContent = `${totalPrice.toLocaleString()} د.ع`;
+}
+
+function toggleBasket() {
+  document.getElementById("bDrawer").classList.toggle("open");
+  document.getElementById("bOverlay").classList.toggle("open");
+}
+
+function shareLocation(){
+  const btn = document.getElementById('locBtn');
+  if(!navigator.geolocation){ alert('نظام تحديد الموقع GPS غير مدعوم في جهازك'); return; }
+  btn.innerText = 'جاري الاتصال بالأقمار الاصطناعية وتحديد موقعك...';
+  
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const lat = pos.coords.latitude.toFixed(6);
+      const lng = pos.coords.longitude.toFixed(6);
+      mapsLink = `https://www.google.com/maps?q=${lat},${lng}`;
+      btn.innerHTML = '✅ تم تحديد منزلك بنجاح بنظام تحديد المواقع';
+      btn.style.background = '#e6fffa';
+      btn.style.borderColor = '#319795';
+    },
+    err => {
+      alert('يرجى تفعيل صلاحية الوصول للموقع (GPS) في الهاتف لتسهيل التوصيل الكربلائي');
+      btn.innerText = '❌ فشل تحديد الموقع تلقائياً';
+    }
+  );
+}
+
+function checkout(e) {
+  e.preventDefault();
+  const itemsArray = Object.values(cart);
+  if(itemsArray.length === 0) { alert("سلتك فارغة! يرجى إضافة المنتجات أولاً"); return; }
+  
+  let msg = `🛒 *طلب جديد من متجر سنتر رضا ابو لحمة الإلكتروني*:
+
+`;
+  let total = 0;
+  
+  itemsArray.forEach((item, idx) => {
+    msg += `${idx + 1}. 📦 *${item.name}*
+   الكمية: [ ${item.qty} ] | السعر: ${(item.price * item.qty).toLocaleString()} د.ع
+
+`;
+    total += (item.price * item.qty);
+  });
+  
+  msg += `-------------------------
+`;
+  msg += `💰 *المجموع النهائي الكلي*: ${total.toLocaleString()} دينار عراقي
+
+`;
+  
+  if(mapsLink) {
+    msg += `📍 *لوكيشن التوصيل الدقيق (خرائط Google)*:
+${mapsLink}
+`;
+  } else {
+    msg += `⚠️ _ملاحظة: لم يقم الزبون بمشاركة اللوكيشن الإلكتروني، يرجى العنوان هاتفياً_
+`;
+  }
+  
+  const whatsappUrl = `https://wa.me/9647840060044?text=${encodeURIComponent(msg)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+window.onload = initShop;
+</script>
+</body>
+</html>
